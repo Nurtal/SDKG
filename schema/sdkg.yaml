@@ -2,10 +2,10 @@ id: https://nurtal.github.io/SDKG/schema/
 name: sdkg
 title: SDKG data model
 description: >-
-  PROPOSAL, awaiting validation by the domain expert (issue #9). Claims are the fundamental unit
+  PROVISIONAL, not validated by a domain expert (ADR-0012, issue #9). Claims are the fundamental unit
   of the graph (ADR-0001). Biolink alignment was checked against Biolink Model 4.4.6.
 license: https://creativecommons.org/licenses/by/4.0/
-version: 0.1.0-proposal
+version: 0.2.0-provisional
 prefixes:
   sdkg: https://nurtal.github.io/SDKG/schema/
   linkml: https://w3id.org/linkml/
@@ -86,6 +86,8 @@ classes:
         description: The version of a database snapshot.
       source_record:
         description: The record's identifier within its source.
+      trial_id:
+        description: A trial registry number, kept only if it appears in the abstract.
       trial_phase: {}
       trial_status: {}
       endpoint:

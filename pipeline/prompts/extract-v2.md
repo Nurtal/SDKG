@@ -18,6 +18,8 @@ A claim states that this publication asserts a relationship between two concepts
 - `negated`: true only when the relationship was tested and not found. Never use it for a relationship that was simply not studied.
 - `directed`: true when the abstract states a direction from subject to object, false when it describes a symmetric relationship, null when unclear.
 - `direct`: true when the relationship is described as direct, false when described as indirect, null when unstated.
+- `sjd_context`: true when this finding was observed in patients with Sjögren's disease, or in their samples or models of the disease. False when the abstract reports it only in another condition or in healthy people.
+- `trial_id`: the trial's registry number when the abstract links this finding to one trial, such as NCT01234567. Otherwise null.
 - `biomarker_role`: for `biomarker_for`, the stated role, otherwise null.
 - `context`: what the abstract states about species, tissue, population, assay and `evidence_model`. Use null for anything not stated. Never infer it.
   - `evidence_model`: `human` for patients with Sjögren's disease or their samples, unless the abstract states it is secondary. `secondary_sjd` for Sjögren's disease alongside another autoimmune disease. `animal` or `in_vitro` for those models.

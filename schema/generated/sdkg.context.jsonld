@@ -108,6 +108,9 @@
       "tissue": {
          "@id": "tissue"
       },
+      "trial_id": {
+         "@id": "trial_id"
+      },
       "trial_phase": {
          "@id": "trial_phase"
       },

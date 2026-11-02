@@ -160,7 +160,7 @@ def test_the_prototype_documents_are_recorded():
 def test_the_extraction_prompt_defines_each_predicate_and_sign():
     import yaml
 
-    prompt = (REPO / "pipeline/prompts/extract-v1.md").read_text("utf-8")
+    prompt = (REPO / "pipeline/prompts/extract-v2.md").read_text("utf-8")
     predicates = yaml.safe_load((REPO / "schema/sdkg.yaml").read_text("utf-8"))["enums"]["Predicate"]["permissible_values"]
 
     for predicate in predicates:

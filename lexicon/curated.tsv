@@ -17,3 +17,23 @@ anti-SSA/Ro	sdkg:anti_ssa_ro	anti-SSA/Ro antibody	autoantibody
 anti-SSB	sdkg:anti_ssb_la	anti-SSB/La antibody	autoantibody
 anti-La	sdkg:anti_ssb_la	anti-SSB/La antibody	autoantibody
 anti-SSB/La	sdkg:anti_ssb_la	anti-SSB/La antibody	autoantibody
+thrombocytopenia	HP:0001873	Thrombocytopenia	phenotype
+leukopenia	HP:0001882	Decreased total leukocyte count	phenotype
+lymphopenia	HP:0001888	Decreased total lymphocyte count	phenotype
+neutropenia	HP:0001875	Decreased total neutrophil count	phenotype
+anemia	HP:0001903	Anemia	phenotype
+hypokalemia	HP:0002900	Hypokalemia	phenotype
+keratoconjunctivitis sicca	HP:0001097	Keratoconjunctivitis sicca	phenotype
+arthritis	HP:0001369	Arthritis	phenotype
+purpura	HP:0000979	Purpura	phenotype
+peripheral neuropathy	HP:0009830	Peripheral neuropathy	phenotype
+cryoglobulinemia	HP:0100778	Cryoglobulinemia	phenotype
+renal tubular acidosis	HP:0001947	Renal tubular acidosis	phenotype
+IL-12	sdkg:il_12	IL-12 (dimer)	gene_or_protein
+IL12	sdkg:il_12	IL-12 (dimer)	gene_or_protein
+IL-23	sdkg:il_23	IL-23 (dimer)	gene_or_protein
+IL23	sdkg:il_23	IL-23 (dimer)	gene_or_protein
+IL-27	sdkg:il_27	IL-27 (dimer)	gene_or_protein
+IL27	sdkg:il_27	IL-27 (dimer)	gene_or_protein
+IL-35	sdkg:il_35	IL-35 (dimer)	gene_or_protein
+IL35	sdkg:il_35	IL-35 (dimer)	gene_or_protein

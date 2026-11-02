@@ -10,10 +10,10 @@
 @prefix pav: <http://purl.org/pav/> .
 sdkg: dcterms:license "https://creativecommons.org/licenses/by/4.0/" ;
 	dcterms:title "SDKG data model" ;
-	pav:version "0.1.0-proposal" ;
+	pav:version "0.2.0-provisional" ;
 	a owl:Ontology ;
 	rdfs:label "sdkg" ;
-	skos:definition "PROPOSAL, awaiting validation by the domain expert (issue #9). Claims are the fundamental unit of the graph (ADR-0001). Biolink alignment was checked against Biolink Model 4.4.6." .
+	skos:definition "PROVISIONAL, not validated by a domain expert (ADR-0012, issue #9). Claims are the fundamental unit of the graph (ADR-0001). Biolink alignment was checked against Biolink Model 4.4.6." .
 sdkg:BiomarkerRole\#activity a owl:Class , sdkg:BiomarkerRole ;
 	rdfs:label "activity" ;
 	rdfs:subClassOf sdkg:BiomarkerRole .
@@ -28,18 +28,18 @@ sdkg:BiomarkerRole\#treatment_response a owl:Class , sdkg:BiomarkerRole ;
 	rdfs:subClassOf sdkg:BiomarkerRole .
 sdkg:BiomarkerRole a owl:Class , linkml:EnumDefinition ;
 	rdfs:label "BiomarkerRole" ;
-	owl:unionOf _:c14n105 ;
+	owl:unionOf _:c14n106 ;
 	skos:definition "Proposed as a claim property so that biomarker_for stays one predicate (CQ11)." ;
 	skos:inScheme sdkg: ;
 	linkml:permissible_values sdkg:BiomarkerRole\#activity , sdkg:BiomarkerRole\#diagnosis , sdkg:BiomarkerRole\#prognosis , sdkg:BiomarkerRole\#treatment_response .
 sdkg:Claim a owl:Class , linkml:ClassDefinition ;
 	rdfs:label "Claim" ;
-	rdfs:subClassOf _:c14n0 , _:c14n10 , _:c14n102 , _:c14n103 , _:c14n106 , _:c14n107 , _:c14n109 , _:c14n112 , _:c14n117 , _:c14n118 , _:c14n119 , _:c14n123 , _:c14n124 , _:c14n125 , _:c14n126 , _:c14n127 , _:c14n129 , _:c14n132 , _:c14n136 , _:c14n141 , _:c14n145 , _:c14n149 , _:c14n150 , _:c14n151 , _:c14n153 , _:c14n16 , _:c14n160 , _:c14n163 , _:c14n169 , _:c14n170 , _:c14n173 , _:c14n176 , _:c14n177 , _:c14n178 , _:c14n179 , _:c14n18 , _:c14n181 , _:c14n183 , _:c14n184 , _:c14n188 , _:c14n191 , _:c14n192 , _:c14n24 , _:c14n34 , _:c14n39 , _:c14n40 , _:c14n51 , _:c14n52 , _:c14n53 , _:c14n55 , _:c14n56 , _:c14n58 , _:c14n61 , _:c14n66 , _:c14n68 , _:c14n69 , _:c14n7 , _:c14n71 , _:c14n73 , _:c14n75 , _:c14n79 , _:c14n8 , _:c14n80 , _:c14n81 , _:c14n84 , _:c14n89 , _:c14n9 , _:c14n91 , _:c14n92 , _:c14n93 , _:c14n97 , _:c14n98 ;
+	rdfs:subClassOf _:c14n0 , _:c14n10 , _:c14n103 , _:c14n104 , _:c14n107 , _:c14n108 , _:c14n11 , _:c14n110 , _:c14n113 , _:c14n118 , _:c14n119 , _:c14n120 , _:c14n124 , _:c14n125 , _:c14n126 , _:c14n127 , _:c14n128 , _:c14n130 , _:c14n133 , _:c14n137 , _:c14n138 , _:c14n143 , _:c14n144 , _:c14n148 , _:c14n152 , _:c14n153 , _:c14n154 , _:c14n156 , _:c14n163 , _:c14n166 , _:c14n17 , _:c14n172 , _:c14n173 , _:c14n176 , _:c14n179 , _:c14n180 , _:c14n181 , _:c14n182 , _:c14n184 , _:c14n186 , _:c14n187 , _:c14n19 , _:c14n191 , _:c14n194 , _:c14n195 , _:c14n25 , _:c14n35 , _:c14n40 , _:c14n41 , _:c14n52 , _:c14n53 , _:c14n54 , _:c14n56 , _:c14n57 , _:c14n59 , _:c14n62 , _:c14n67 , _:c14n69 , _:c14n7 , _:c14n70 , _:c14n72 , _:c14n74 , _:c14n76 , _:c14n8 , _:c14n80 , _:c14n81 , _:c14n82 , _:c14n85 , _:c14n9 , _:c14n90 , _:c14n92 , _:c14n93 , _:c14n94 , _:c14n98 , _:c14n99 ;
 	skos:definition "A statement that a source asserts a relationship between two entities in a context." ;
 	skos:inScheme sdkg: .
 sdkg:ClaimGroup a owl:Class , linkml:ClassDefinition ;
 	rdfs:label "ClaimGroup" ;
-	rdfs:subClassOf _:c14n113 , _:c14n120 , _:c14n122 , _:c14n133 , _:c14n159 , _:c14n167 , _:c14n189 , _:c14n20 , _:c14n21 , _:c14n27 , _:c14n48 , _:c14n64 , _:c14n65 , _:c14n99 ;
+	rdfs:subClassOf _:c14n100 , _:c14n114 , _:c14n121 , _:c14n123 , _:c14n134 , _:c14n162 , _:c14n170 , _:c14n192 , _:c14n21 , _:c14n22 , _:c14n28 , _:c14n49 , _:c14n65 , _:c14n66 ;
 	skos:definition "Claims with the same normalised subject, predicate, object and context." ;
 	skos:inScheme sdkg: .
 sdkg:ClaimStatus\#ai_extracted a owl:Class , sdkg:ClaimStatus ;
@@ -53,17 +53,17 @@ sdkg:ClaimStatus\#human_reviewed a owl:Class , sdkg:ClaimStatus ;
 	rdfs:subClassOf sdkg:ClaimStatus .
 sdkg:ClaimStatus a owl:Class , linkml:EnumDefinition ;
 	rdfs:label "ClaimStatus" ;
-	owl:unionOf _:c14n146 ;
+	owl:unionOf _:c14n149 ;
 	skos:inScheme sdkg: ;
 	linkml:permissible_values sdkg:ClaimStatus\#ai_extracted , sdkg:ClaimStatus\#curated_source , sdkg:ClaimStatus\#human_reviewed .
 sdkg:Contradiction a owl:Class , linkml:ClassDefinition ;
 	rdfs:label "Contradiction" ;
-	rdfs:subClassOf _:c14n115 , _:c14n121 , _:c14n158 , _:c14n190 , _:c14n46 , _:c14n67 ;
+	rdfs:subClassOf _:c14n116 , _:c14n122 , _:c14n161 , _:c14n193 , _:c14n47 , _:c14n68 ;
 	skos:definition "Two claims about the same subject and object, in compatible contexts, with opposite signs." ;
 	skos:inScheme sdkg: .
 sdkg:Entity a owl:Class , linkml:ClassDefinition ;
 	rdfs:label "Entity" ;
-	rdfs:subClassOf _:c14n12 , _:c14n130 , _:c14n135 , _:c14n139 , _:c14n140 , _:c14n147 , _:c14n165 , _:c14n187 , _:c14n23 , _:c14n3 , _:c14n38 , _:c14n44 ;
+	rdfs:subClassOf _:c14n13 , _:c14n131 , _:c14n136 , _:c14n141 , _:c14n142 , _:c14n150 , _:c14n168 , _:c14n190 , _:c14n24 , _:c14n3 , _:c14n39 , _:c14n45 ;
 	skos:definition "A concept that claims are about." ;
 	skos:inScheme sdkg: .
 sdkg:EntityCategory\#assay a owl:Class , sdkg:EntityCategory ;
@@ -136,12 +136,12 @@ sdkg:EntityCategory\#unclassified a owl:Class , sdkg:EntityCategory ;
 	skos:definition "Not yet classified. Used for concepts awaiting review." .
 sdkg:EntityCategory a owl:Class , linkml:EnumDefinition ;
 	rdfs:label "EntityCategory" ;
-	owl:unionOf _:c14n85 ;
+	owl:unionOf _:c14n86 ;
 	skos:inScheme sdkg: ;
 	linkml:permissible_values sdkg:EntityCategory\#assay , sdkg:EntityCategory\#autoantibody , sdkg:EntityCategory\#biomarker , sdkg:EntityCategory\#cell_type , sdkg:EntityCategory\#clinical_endpoint , sdkg:EntityCategory\#clinical_trial , sdkg:EntityCategory\#disease , sdkg:EntityCategory\#drug , sdkg:EntityCategory\#gene_or_protein , sdkg:EntityCategory\#genetic_variant , sdkg:EntityCategory\#pathway_or_process , sdkg:EntityCategory\#patient_population , sdkg:EntityCategory\#phenotype , sdkg:EntityCategory\#published_stratification , sdkg:EntityCategory\#stratification_subgroup , sdkg:EntityCategory\#tissue_or_anatomy , sdkg:EntityCategory\#unclassified .
 sdkg:Evidence a owl:Class , linkml:ClassDefinition ;
 	rdfs:label "Evidence" ;
-	rdfs:subClassOf _:c14n1 , _:c14n108 , _:c14n111 , _:c14n128 , _:c14n148 , _:c14n156 , _:c14n172 , _:c14n180 , _:c14n185 , _:c14n193 , _:c14n28 , _:c14n30 , _:c14n63 , _:c14n70 , _:c14n83 , _:c14n87 , _:c14n90 , _:c14n96 ;
+	rdfs:subClassOf _:c14n1 , _:c14n109 , _:c14n112 , _:c14n129 , _:c14n151 , _:c14n159 , _:c14n175 , _:c14n183 , _:c14n188 , _:c14n196 , _:c14n29 , _:c14n31 , _:c14n64 , _:c14n71 , _:c14n84 , _:c14n88 , _:c14n91 , _:c14n97 ;
 	skos:definition "Where a claim's evidence span is. Its text is included only when licensing allows." ;
 	skos:inScheme sdkg: .
 sdkg:EvidenceLevel\#animal_or_in_vitro a owl:Class , sdkg:EvidenceLevel ;
@@ -164,7 +164,7 @@ sdkg:EvidenceLevel\#unspecified a owl:Class , sdkg:EvidenceLevel ;
 	rdfs:subClassOf sdkg:EvidenceLevel .
 sdkg:EvidenceLevel a owl:Class , linkml:EnumDefinition ;
 	rdfs:label "EvidenceLevel" ;
-	owl:unionOf _:c14n86 ;
+	owl:unionOf _:c14n87 ;
 	skos:definition "PROPOSAL. Ordinal grade of study strength, for the expert to review." ;
 	skos:inScheme sdkg: ;
 	linkml:permissible_values sdkg:EvidenceLevel\#animal_or_in_vitro , sdkg:EvidenceLevel\#curated_database , sdkg:EvidenceLevel\#human_genetic , sdkg:EvidenceLevel\#human_observational , sdkg:EvidenceLevel\#randomised_trial , sdkg:EvidenceLevel\#unspecified .
@@ -182,12 +182,12 @@ sdkg:EvidenceModel\#secondary_sjd a owl:Class , sdkg:EvidenceModel ;
 	rdfs:subClassOf sdkg:EvidenceModel .
 sdkg:EvidenceModel a owl:Class , linkml:EnumDefinition ;
 	rdfs:label "EvidenceModel" ;
-	owl:unionOf _:c14n131 ;
+	owl:unionOf _:c14n132 ;
 	skos:inScheme sdkg: ;
 	linkml:permissible_values sdkg:EvidenceModel\#animal , sdkg:EvidenceModel\#human , sdkg:EvidenceModel\#in_vitro , sdkg:EvidenceModel\#secondary_sjd .
 sdkg:HeldOutAssociation a owl:Class , linkml:ClassDefinition ;
 	rdfs:label "HeldOutAssociation" ;
-	rdfs:subClassOf _:c14n138 , _:c14n142 , _:c14n154 , _:c14n162 , _:c14n182 , _:c14n19 , _:c14n194 , _:c14n2 , _:c14n57 , _:c14n62 , _:c14n76 , _:c14n82 ;
+	rdfs:subClassOf _:c14n140 , _:c14n145 , _:c14n157 , _:c14n165 , _:c14n185 , _:c14n197 , _:c14n2 , _:c14n20 , _:c14n58 , _:c14n63 , _:c14n77 , _:c14n83 ;
 	skos:definition "An Open Targets SjD association reserved for evaluation, kept out of the graph (ADR-0011)." ;
 	skos:inScheme sdkg: .
 sdkg:Layer\#background a owl:Class , sdkg:Layer ;
@@ -198,7 +198,7 @@ sdkg:Layer\#disease_core a owl:Class , sdkg:Layer ;
 	rdfs:subClassOf sdkg:Layer .
 sdkg:Layer a owl:Class , linkml:EnumDefinition ;
 	rdfs:label "Layer" ;
-	owl:unionOf _:c14n168 ;
+	owl:unionOf _:c14n171 ;
 	skos:inScheme sdkg: ;
 	linkml:permissible_values sdkg:Layer\#background , sdkg:Layer\#disease_core .
 sdkg:Predicate\#affects a owl:Class , sdkg:Predicate ;
@@ -326,7 +326,7 @@ sdkg:Predicate\#treats a owl:Class , sdkg:Predicate ;
 	sdkg:competency_questions "CQ15" .
 sdkg:Predicate a owl:Class , linkml:EnumDefinition ;
 	rdfs:label "Predicate" ;
-	owl:unionOf _:c14n95 ;
+	owl:unionOf _:c14n96 ;
 	skos:definition "Closed list. Regulation direction is carried by sign, and null results by negated, in line with Biolink's move from directional predicates to qualifiers and its negated slot." ;
 	skos:inScheme sdkg: ;
 	linkml:permissible_values sdkg:Predicate\#affects , sdkg:Predicate\#altered_in , sdkg:Predicate\#associated_with , sdkg:Predicate\#biomarker_for , sdkg:Predicate\#causes , sdkg:Predicate\#characterised_by , sdkg:Predicate\#contributes_to , sdkg:Predicate\#correlated_with , sdkg:Predicate\#decreases_likelihood_of , sdkg:Predicate\#drug_acts_on , sdkg:Predicate\#expressed_in , sdkg:Predicate\#gene_associated_with_condition , sdkg:Predicate\#has_member , sdkg:Predicate\#has_phenotype , sdkg:Predicate\#increases_likelihood_of , sdkg:Predicate\#located_in , sdkg:Predicate\#manifestation_of , sdkg:Predicate\#participates_in , sdkg:Predicate\#physically_interacts_with , sdkg:Predicate\#regulates , sdkg:Predicate\#studied_to_treat , sdkg:Predicate\#target_for , sdkg:Predicate\#treats .
@@ -338,7 +338,7 @@ sdkg:Sign\#positive a owl:Class , sdkg:Sign ;
 	rdfs:subClassOf sdkg:Sign .
 sdkg:Sign a owl:Class , linkml:EnumDefinition ;
 	rdfs:label "Sign" ;
-	owl:unionOf _:c14n13 ;
+	owl:unionOf _:c14n14 ;
 	skos:inScheme sdkg: ;
 	linkml:permissible_values sdkg:Sign\#negative , sdkg:Sign\#positive .
 sdkg:assay a owl:ObjectProperty , linkml:SlotDefinition ;
@@ -477,6 +477,10 @@ sdkg:target a owl:ObjectProperty , linkml:SlotDefinition ;
 sdkg:tissue a owl:ObjectProperty , linkml:SlotDefinition ;
 	rdfs:label "tissue" ;
 	skos:inScheme sdkg: .
+sdkg:trial_id a owl:ObjectProperty , linkml:SlotDefinition ;
+	rdfs:label "trial_id" ;
+	skos:definition "A trial registry number, kept only if it appears in the abstract." ;
+	skos:inScheme sdkg: .
 sdkg:trial_phase a owl:ObjectProperty , linkml:SlotDefinition ;
 	rdfs:label "trial_phase" ;
 	skos:inScheme sdkg: .
@@ -492,519 +496,528 @@ _:c14n1 a owl:Restriction ;
 _:c14n10 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:subject .
-_:c14n100 rdf:first sdkg:Predicate\#regulates ;
-	rdf:rest _:c14n77 .
-_:c14n101 rdf:first sdkg:EntityCategory\#unclassified ;
+_:c14n100 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty sdkg:negative_claims .
+_:c14n101 rdf:first sdkg:Predicate\#regulates ;
+	rdf:rest _:c14n78 .
+_:c14n102 rdf:first sdkg:EntityCategory\#unclassified ;
 	rdf:rest rdf:nil .
-_:c14n102 a owl:Restriction ;
+_:c14n103 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:source .
-_:c14n103 a owl:Restriction ;
+_:c14n104 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:subject .
-_:c14n104 rdf:first sdkg:EvidenceLevel\#human_genetic ;
-	rdf:rest _:c14n31 .
-_:c14n105 rdf:first sdkg:BiomarkerRole\#diagnosis ;
-	rdf:rest _:c14n59 .
-_:c14n106 a owl:Restriction ;
+_:c14n105 rdf:first sdkg:EvidenceLevel\#human_genetic ;
+	rdf:rest _:c14n32 .
+_:c14n106 rdf:first sdkg:BiomarkerRole\#diagnosis ;
+	rdf:rest _:c14n60 .
+_:c14n107 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:population .
-_:c14n107 a owl:Restriction ;
+_:c14n108 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:trial_phase .
-_:c14n108 a owl:Restriction ;
+_:c14n109 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:claim_id .
-_:c14n109 a owl:Restriction ;
+_:c14n11 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty sdkg:trial_id .
+_:c14n110 a owl:Restriction ;
 	owl:allValuesFrom sdkg:Predicate ;
 	owl:onProperty sdkg:predicate .
-_:c14n11 rdf:first sdkg:EntityCategory\#tissue_or_anatomy ;
-	rdf:rest _:c14n155 .
-_:c14n110 rdf:first sdkg:EntityCategory\#clinical_endpoint ;
-	rdf:rest _:c14n14 .
-_:c14n111 a owl:Restriction ;
+_:c14n111 rdf:first sdkg:EntityCategory\#clinical_endpoint ;
+	rdf:rest _:c14n15 .
+_:c14n112 a owl:Restriction ;
 	owl:allValuesFrom linkml:Integer ;
 	owl:onProperty sdkg:span_end .
-_:c14n112 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:subject .
 _:c14n113 a owl:Restriction ;
 	owl:maxCardinality 1 ;
+	owl:onProperty sdkg:subject .
+_:c14n114 a owl:Restriction ;
+	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:positive_claims .
-_:c14n114 rdf:first sdkg:ClaimStatus\#human_reviewed ;
+_:c14n115 rdf:first sdkg:ClaimStatus\#human_reviewed ;
 	rdf:rest rdf:nil .
-_:c14n115 a owl:Restriction ;
+_:c14n116 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:claim_id_b .
-_:c14n116 rdf:first sdkg:Predicate\#decreases_likelihood_of ;
-	rdf:rest _:c14n100 .
-_:c14n117 a owl:Restriction ;
+_:c14n117 rdf:first sdkg:Predicate\#decreases_likelihood_of ;
+	rdf:rest _:c14n101 .
+_:c14n118 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:directed .
-_:c14n118 a owl:Restriction ;
+_:c14n119 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:predicate .
-_:c14n119 a owl:Restriction ;
+_:c14n12 rdf:first sdkg:EntityCategory\#tissue_or_anatomy ;
+	rdf:rest _:c14n158 .
+_:c14n120 a owl:Restriction ;
 	owl:allValuesFrom sdkg:EvidenceModel ;
 	owl:onProperty sdkg:evidence_model .
-_:c14n12 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:entity_id .
-_:c14n120 a owl:Restriction ;
+_:c14n121 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:positive_claims .
-_:c14n121 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:claim_id_a .
 _:c14n122 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:negative_claims .
+	owl:onProperty sdkg:claim_id_a .
 _:c14n123 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:layer .
+	owl:onProperty sdkg:negative_claims .
 _:c14n124 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:trial_phase .
+	owl:onProperty sdkg:layer .
 _:c14n125 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:sign .
+	owl:onProperty sdkg:trial_phase .
 _:c14n126 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty sdkg:sign .
+_:c14n127 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:assay .
-_:c14n127 a owl:Restriction ;
+_:c14n128 a owl:Restriction ;
 	owl:allValuesFrom sdkg:ClaimStatus ;
 	owl:onProperty sdkg:claim_status .
-_:c14n128 a owl:Restriction ;
+_:c14n129 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:claim_id .
-_:c14n129 a owl:Restriction ;
+_:c14n13 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty sdkg:entity_id .
+_:c14n130 a owl:Restriction ;
 	owl:allValuesFrom linkml:Boolean ;
 	owl:onProperty sdkg:negated .
-_:c14n13 rdf:first sdkg:Sign\#positive ;
-	rdf:rest _:c14n186 .
-_:c14n130 a owl:Restriction ;
+_:c14n131 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:label .
-_:c14n131 rdf:first sdkg:EvidenceModel\#human ;
-	rdf:rest _:c14n78 .
-_:c14n132 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:evidence_level .
+_:c14n132 rdf:first sdkg:EvidenceModel\#human ;
+	rdf:rest _:c14n79 .
 _:c14n133 a owl:Restriction ;
 	owl:maxCardinality 1 ;
+	owl:onProperty sdkg:evidence_level .
+_:c14n134 a owl:Restriction ;
+	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:support .
-_:c14n134 rdf:first sdkg:EntityCategory\#genetic_variant ;
-	rdf:rest _:c14n164 .
-_:c14n135 a owl:Restriction ;
+_:c14n135 rdf:first sdkg:EntityCategory\#genetic_variant ;
+	rdf:rest _:c14n167 .
+_:c14n136 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:label .
-_:c14n136 a owl:Restriction ;
+_:c14n137 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:direct .
-_:c14n137 rdf:first sdkg:Predicate\#altered_in ;
-	rdf:rest _:c14n60 .
 _:c14n138 a owl:Restriction ;
 	owl:maxCardinality 1 ;
+	owl:onProperty sdkg:trial_id .
+_:c14n139 rdf:first sdkg:Predicate\#altered_in ;
+	rdf:rest _:c14n61 .
+_:c14n14 rdf:first sdkg:Sign\#positive ;
+	rdf:rest _:c14n189 .
+_:c14n140 a owl:Restriction ;
+	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:target .
-_:c14n139 a owl:Restriction ;
+_:c14n141 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:resolved .
-_:c14n14 rdf:first sdkg:EntityCategory\#patient_population ;
-	rdf:rest _:c14n47 .
-_:c14n140 a owl:Restriction ;
+_:c14n142 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:entity_id .
-_:c14n141 a owl:Restriction ;
+_:c14n143 a owl:Restriction ;
 	owl:allValuesFrom sdkg:EvidenceLevel ;
 	owl:onProperty sdkg:evidence_level .
-_:c14n142 a owl:Restriction ;
+_:c14n144 a owl:Restriction ;
+	owl:allValuesFrom linkml:String ;
+	owl:onProperty sdkg:trial_id .
+_:c14n145 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:record_id .
-_:c14n143 rdf:first sdkg:EvidenceLevel\#unspecified ;
+_:c14n146 rdf:first sdkg:EvidenceLevel\#unspecified ;
 	rdf:rest rdf:nil .
-_:c14n144 rdf:first sdkg:EvidenceLevel\#animal_or_in_vitro ;
-	rdf:rest _:c14n143 .
-_:c14n145 a owl:Restriction ;
+_:c14n147 rdf:first sdkg:EvidenceLevel\#animal_or_in_vitro ;
+	rdf:rest _:c14n146 .
+_:c14n148 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:biomarker_role .
-_:c14n146 rdf:first sdkg:ClaimStatus\#curated_source ;
-	rdf:rest _:c14n32 .
-_:c14n147 a owl:Restriction ;
+_:c14n149 rdf:first sdkg:ClaimStatus\#curated_source ;
+	rdf:rest _:c14n33 .
+_:c14n15 rdf:first sdkg:EntityCategory\#patient_population ;
+	rdf:rest _:c14n48 .
+_:c14n150 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:resolved .
-_:c14n148 a owl:Restriction ;
+_:c14n151 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:span_text .
-_:c14n149 a owl:Restriction ;
+_:c14n152 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:object .
-_:c14n15 rdf:first sdkg:Predicate\#correlated_with ;
-	rdf:rest _:c14n17 .
-_:c14n150 a owl:Restriction ;
+_:c14n153 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:sign .
-_:c14n151 a owl:Restriction ;
+_:c14n154 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:source_record .
-_:c14n152 rdf:first sdkg:EntityCategory\#drug ;
-	rdf:rest _:c14n37 .
-_:c14n153 a owl:Restriction ;
+_:c14n155 rdf:first sdkg:EntityCategory\#drug ;
+	rdf:rest _:c14n38 .
+_:c14n156 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:endpoint .
-_:c14n154 a owl:Restriction ;
+_:c14n157 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:score .
-_:c14n155 rdf:first sdkg:EntityCategory\#phenotype ;
+_:c14n158 rdf:first sdkg:EntityCategory\#phenotype ;
 	rdf:rest _:c14n6 .
-_:c14n156 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty sdkg:span_start .
-_:c14n157 rdf:first sdkg:Layer\#background ;
-	rdf:rest rdf:nil .
-_:c14n158 a owl:Restriction ;
-	owl:allValuesFrom linkml:String ;
-	owl:onProperty sdkg:claim_id_a .
 _:c14n159 a owl:Restriction ;
 	owl:minCardinality 1 ;
-	owl:onProperty sdkg:support .
-_:c14n16 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:direct .
-_:c14n160 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:source_version .
-_:c14n161 rdf:first sdkg:Predicate\#target_for ;
-	rdf:rest _:c14n22 .
-_:c14n162 a owl:Restriction ;
+	owl:onProperty sdkg:span_start .
+_:c14n16 rdf:first sdkg:Predicate\#correlated_with ;
+	rdf:rest _:c14n18 .
+_:c14n160 rdf:first sdkg:Layer\#background ;
+	rdf:rest rdf:nil .
+_:c14n161 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
-	owl:onProperty sdkg:record_id .
+	owl:onProperty sdkg:claim_id_a .
+_:c14n162 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty sdkg:support .
 _:c14n163 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:claim_id .
-_:c14n164 rdf:first sdkg:EntityCategory\#pathway_or_process ;
-	rdf:rest _:c14n166 .
+	owl:onProperty sdkg:source_version .
+_:c14n164 rdf:first sdkg:Predicate\#target_for ;
+	rdf:rest _:c14n23 .
 _:c14n165 a owl:Restriction ;
+	owl:allValuesFrom linkml:String ;
+	owl:onProperty sdkg:record_id .
+_:c14n166 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty sdkg:claim_id .
+_:c14n167 rdf:first sdkg:EntityCategory\#pathway_or_process ;
+	rdf:rest _:c14n169 .
+_:c14n168 a owl:Restriction ;
 	owl:allValuesFrom linkml:Boolean ;
 	owl:onProperty sdkg:resolved .
-_:c14n166 rdf:first sdkg:EntityCategory\#cell_type ;
-	rdf:rest _:c14n11 .
-_:c14n167 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty sdkg:group_id .
-_:c14n168 rdf:first sdkg:Layer\#disease_core ;
-	rdf:rest _:c14n157 .
-_:c14n169 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty sdkg:trial_status .
-_:c14n17 rdf:first sdkg:Predicate\#manifestation_of ;
-	rdf:rest _:c14n36 .
+_:c14n169 rdf:first sdkg:EntityCategory\#cell_type ;
+	rdf:rest _:c14n12 .
+_:c14n17 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty sdkg:direct .
 _:c14n170 a owl:Restriction ;
 	owl:minCardinality 1 ;
-	owl:onProperty sdkg:claim_status .
-_:c14n171 rdf:first sdkg:Predicate\#contributes_to ;
-	rdf:rest _:c14n74 .
+	owl:onProperty sdkg:group_id .
+_:c14n171 rdf:first sdkg:Layer\#disease_core ;
+	rdf:rest _:c14n160 .
 _:c14n172 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty sdkg:trial_status .
+_:c14n173 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty sdkg:claim_status .
+_:c14n174 rdf:first sdkg:Predicate\#contributes_to ;
+	rdf:rest _:c14n75 .
+_:c14n175 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:span_text .
-_:c14n173 a owl:Restriction ;
+_:c14n176 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:endpoint .
-_:c14n174 rdf:first sdkg:EntityCategory\#biomarker ;
+_:c14n177 rdf:first sdkg:EntityCategory\#biomarker ;
 	rdf:rest _:c14n4 .
-_:c14n175 rdf:first sdkg:Predicate\#has_member ;
-	rdf:rest _:c14n26 .
-_:c14n176 a owl:Restriction ;
+_:c14n178 rdf:first sdkg:Predicate\#has_member ;
+	rdf:rest _:c14n27 .
+_:c14n179 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:source_version .
-_:c14n177 a owl:Restriction ;
+_:c14n18 rdf:first sdkg:Predicate\#manifestation_of ;
+	rdf:rest _:c14n37 .
+_:c14n180 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:evidence_model .
-_:c14n178 a owl:Restriction ;
+_:c14n181 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:tissue .
-_:c14n179 a owl:Restriction ;
+_:c14n182 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:source .
-_:c14n18 a owl:Restriction ;
-	owl:allValuesFrom linkml:Boolean ;
-	owl:onProperty sdkg:directed .
-_:c14n180 a owl:Restriction ;
+_:c14n183 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:claim_id .
-_:c14n181 a owl:Restriction ;
+_:c14n184 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:negated .
-_:c14n182 a owl:Restriction ;
+_:c14n185 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:target .
-_:c14n183 a owl:Restriction ;
+_:c14n186 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:source_record .
-_:c14n184 a owl:Restriction ;
-	owl:allValuesFrom linkml:String ;
-	owl:onProperty sdkg:object .
-_:c14n185 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:span_end .
-_:c14n186 rdf:first sdkg:Sign\#negative ;
-	rdf:rest rdf:nil .
 _:c14n187 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
-	owl:onProperty sdkg:entity_id .
+	owl:onProperty sdkg:object .
 _:c14n188 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty sdkg:span_end .
+_:c14n189 rdf:first sdkg:Sign\#negative ;
+	rdf:rest rdf:nil .
+_:c14n19 a owl:Restriction ;
+	owl:allValuesFrom linkml:Boolean ;
+	owl:onProperty sdkg:directed .
+_:c14n190 a owl:Restriction ;
+	owl:allValuesFrom linkml:String ;
+	owl:onProperty sdkg:entity_id .
+_:c14n191 a owl:Restriction ;
 	owl:allValuesFrom sdkg:BiomarkerRole ;
 	owl:onProperty sdkg:biomarker_role .
-_:c14n189 a owl:Restriction ;
-	owl:allValuesFrom linkml:String ;
-	owl:onProperty sdkg:claim_ids .
-_:c14n19 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty sdkg:score .
-_:c14n190 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty sdkg:claim_id_b .
-_:c14n191 a owl:Restriction ;
-	owl:allValuesFrom linkml:String ;
-	owl:onProperty sdkg:trial_status .
 _:c14n192 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
-	owl:onProperty sdkg:claim_id .
+	owl:onProperty sdkg:claim_ids .
 _:c14n193 a owl:Restriction ;
 	owl:minCardinality 1 ;
-	owl:onProperty sdkg:span_end .
+	owl:onProperty sdkg:claim_id_b .
 _:c14n194 a owl:Restriction ;
+	owl:allValuesFrom linkml:String ;
+	owl:onProperty sdkg:trial_status .
+_:c14n195 a owl:Restriction ;
+	owl:allValuesFrom linkml:String ;
+	owl:onProperty sdkg:claim_id .
+_:c14n196 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty sdkg:span_end .
+_:c14n197 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:target .
 _:c14n2 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:disease .
 _:c14n20 a owl:Restriction ;
-	owl:allValuesFrom linkml:Integer ;
-	owl:onProperty sdkg:negative_claims .
+	owl:minCardinality 1 ;
+	owl:onProperty sdkg:score .
 _:c14n21 a owl:Restriction ;
 	owl:allValuesFrom linkml:Integer ;
+	owl:onProperty sdkg:negative_claims .
+_:c14n22 a owl:Restriction ;
+	owl:allValuesFrom linkml:Integer ;
 	owl:onProperty sdkg:positive_claims .
-_:c14n22 rdf:first sdkg:Predicate\#drug_acts_on ;
+_:c14n23 rdf:first sdkg:Predicate\#drug_acts_on ;
 	rdf:rest _:c14n5 .
-_:c14n23 a owl:Restriction ;
+_:c14n24 a owl:Restriction ;
 	owl:allValuesFrom sdkg:EntityCategory ;
 	owl:onProperty sdkg:category .
-_:c14n24 a owl:Restriction ;
+_:c14n25 a owl:Restriction ;
 	owl:allValuesFrom linkml:Boolean ;
 	owl:onProperty sdkg:direct .
-_:c14n25 rdf:first sdkg:Predicate\#biomarker_for ;
-	rdf:rest _:c14n161 .
-_:c14n26 rdf:first sdkg:Predicate\#characterised_by ;
+_:c14n26 rdf:first sdkg:Predicate\#biomarker_for ;
+	rdf:rest _:c14n164 .
+_:c14n27 rdf:first sdkg:Predicate\#characterised_by ;
 	rdf:rest rdf:nil .
-_:c14n27 a owl:Restriction ;
+_:c14n28 a owl:Restriction ;
 	owl:allValuesFrom linkml:Integer ;
 	owl:onProperty sdkg:support .
-_:c14n28 a owl:Restriction ;
+_:c14n29 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:pmid .
-_:c14n29 rdf:first sdkg:Predicate\#participates_in ;
-	rdf:rest _:c14n88 .
 _:c14n3 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:category .
-_:c14n30 a owl:Restriction ;
+_:c14n30 rdf:first sdkg:Predicate\#participates_in ;
+	rdf:rest _:c14n89 .
+_:c14n31 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:span_start .
-_:c14n31 rdf:first sdkg:EvidenceLevel\#human_observational ;
-	rdf:rest _:c14n144 .
-_:c14n32 rdf:first sdkg:ClaimStatus\#ai_extracted ;
-	rdf:rest _:c14n114 .
-_:c14n33 rdf:first sdkg:Predicate\#treats ;
-	rdf:rest _:c14n41 .
-_:c14n34 a owl:Restriction ;
+_:c14n32 rdf:first sdkg:EvidenceLevel\#human_observational ;
+	rdf:rest _:c14n147 .
+_:c14n33 rdf:first sdkg:ClaimStatus\#ai_extracted ;
+	rdf:rest _:c14n115 .
+_:c14n34 rdf:first sdkg:Predicate\#treats ;
+	rdf:rest _:c14n42 .
+_:c14n35 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:evidence_model .
-_:c14n35 rdf:first sdkg:EvidenceModel\#animal ;
-	rdf:rest _:c14n43 .
-_:c14n36 rdf:first sdkg:Predicate\#has_phenotype ;
-	rdf:rest _:c14n25 .
-_:c14n37 rdf:first sdkg:EntityCategory\#clinical_trial ;
-	rdf:rest _:c14n110 .
-_:c14n38 a owl:Restriction ;
+_:c14n36 rdf:first sdkg:EvidenceModel\#animal ;
+	rdf:rest _:c14n44 .
+_:c14n37 rdf:first sdkg:Predicate\#has_phenotype ;
+	rdf:rest _:c14n26 .
+_:c14n38 rdf:first sdkg:EntityCategory\#clinical_trial ;
+	rdf:rest _:c14n111 .
+_:c14n39 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:label .
-_:c14n39 a owl:Restriction ;
+_:c14n4 rdf:first sdkg:EntityCategory\#autoantibody ;
+	rdf:rest _:c14n155 .
+_:c14n40 a owl:Restriction ;
 	owl:allValuesFrom sdkg:Layer ;
 	owl:onProperty sdkg:layer .
-_:c14n4 rdf:first sdkg:EntityCategory\#autoantibody ;
-	rdf:rest _:c14n152 .
-_:c14n40 a owl:Restriction ;
+_:c14n41 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:species .
-_:c14n41 rdf:first sdkg:Predicate\#affects ;
-	rdf:rest _:c14n175 .
-_:c14n42 rdf:first sdkg:Predicate\#increases_likelihood_of ;
-	rdf:rest _:c14n116 .
-_:c14n43 rdf:first sdkg:EvidenceModel\#in_vitro ;
+_:c14n42 rdf:first sdkg:Predicate\#affects ;
+	rdf:rest _:c14n178 .
+_:c14n43 rdf:first sdkg:Predicate\#increases_likelihood_of ;
+	rdf:rest _:c14n117 .
+_:c14n44 rdf:first sdkg:EvidenceModel\#in_vitro ;
 	rdf:rest rdf:nil .
-_:c14n44 a owl:Restriction ;
+_:c14n45 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:category .
-_:c14n45 rdf:first sdkg:BiomarkerRole\#prognosis ;
-	rdf:rest _:c14n50 .
-_:c14n46 a owl:Restriction ;
+_:c14n46 rdf:first sdkg:BiomarkerRole\#prognosis ;
+	rdf:rest _:c14n51 .
+_:c14n47 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:claim_id_a .
-_:c14n47 rdf:first sdkg:EntityCategory\#published_stratification ;
-	rdf:rest _:c14n94 .
-_:c14n48 a owl:Restriction ;
+_:c14n48 rdf:first sdkg:EntityCategory\#published_stratification ;
+	rdf:rest _:c14n95 .
+_:c14n49 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:group_id .
-_:c14n49 rdf:first sdkg:Predicate\#located_in ;
-	rdf:rest _:c14n137 .
 _:c14n5 rdf:first sdkg:Predicate\#studied_to_treat ;
-	rdf:rest _:c14n33 .
-_:c14n50 rdf:first sdkg:BiomarkerRole\#treatment_response ;
+	rdf:rest _:c14n34 .
+_:c14n50 rdf:first sdkg:Predicate\#located_in ;
+	rdf:rest _:c14n139 .
+_:c14n51 rdf:first sdkg:BiomarkerRole\#treatment_response ;
 	rdf:rest rdf:nil .
-_:c14n51 a owl:Restriction ;
+_:c14n52 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:extraction_reliability .
-_:c14n52 a owl:Restriction ;
+_:c14n53 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:population .
-_:c14n53 a owl:Restriction ;
+_:c14n54 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:biomarker_role .
-_:c14n54 rdf:first sdkg:EntityCategory\#assay ;
-	rdf:rest _:c14n101 .
-_:c14n55 a owl:Restriction ;
+_:c14n55 rdf:first sdkg:EntityCategory\#assay ;
+	rdf:rest _:c14n102 .
+_:c14n56 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:assay .
-_:c14n56 a owl:Restriction ;
+_:c14n57 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:object .
-_:c14n57 a owl:Restriction ;
+_:c14n58 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:disease .
-_:c14n58 a owl:Restriction ;
+_:c14n59 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:source_record .
-_:c14n59 rdf:first sdkg:BiomarkerRole\#activity ;
-	rdf:rest _:c14n45 .
 _:c14n6 rdf:first sdkg:EntityCategory\#disease ;
-	rdf:rest _:c14n174 .
-_:c14n60 rdf:first sdkg:Predicate\#associated_with ;
-	rdf:rest _:c14n15 .
-_:c14n61 a owl:Restriction ;
+	rdf:rest _:c14n177 .
+_:c14n60 rdf:first sdkg:BiomarkerRole\#activity ;
+	rdf:rest _:c14n46 .
+_:c14n61 rdf:first sdkg:Predicate\#associated_with ;
+	rdf:rest _:c14n16 .
+_:c14n62 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:endpoint .
-_:c14n62 a owl:Restriction ;
+_:c14n63 a owl:Restriction ;
 	owl:allValuesFrom linkml:Float ;
 	owl:onProperty sdkg:score .
-_:c14n63 a owl:Restriction ;
+_:c14n64 a owl:Restriction ;
 	owl:allValuesFrom linkml:Integer ;
 	owl:onProperty sdkg:span_start .
-_:c14n64 a owl:Restriction ;
+_:c14n65 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:group_id .
-_:c14n65 a owl:Restriction ;
+_:c14n66 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:claim_ids .
-_:c14n66 a owl:Restriction ;
+_:c14n67 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:tissue .
-_:c14n67 a owl:Restriction ;
+_:c14n68 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:claim_id_b .
-_:c14n68 a owl:Restriction ;
+_:c14n69 a owl:Restriction ;
 	owl:allValuesFrom linkml:Float ;
 	owl:onProperty sdkg:extraction_reliability .
-_:c14n69 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty sdkg:source_version .
 _:c14n7 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:layer .
 _:c14n70 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:span_hash .
+	owl:minCardinality 0 ;
+	owl:onProperty sdkg:source_version .
 _:c14n71 a owl:Restriction ;
 	owl:maxCardinality 1 ;
+	owl:onProperty sdkg:span_hash .
+_:c14n72 a owl:Restriction ;
+	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:population .
-_:c14n72 rdf:first sdkg:EvidenceLevel\#curated_database ;
-	rdf:rest _:c14n104 .
-_:c14n73 a owl:Restriction ;
+_:c14n73 rdf:first sdkg:EvidenceLevel\#curated_database ;
+	rdf:rest _:c14n105 .
+_:c14n74 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:species .
-_:c14n74 rdf:first sdkg:Predicate\#physically_interacts_with ;
-	rdf:rest _:c14n29 .
-_:c14n75 a owl:Restriction ;
-	owl:allValuesFrom linkml:String ;
-	owl:onProperty sdkg:source .
+_:c14n75 rdf:first sdkg:Predicate\#physically_interacts_with ;
+	rdf:rest _:c14n30 .
 _:c14n76 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
+	owl:onProperty sdkg:source .
+_:c14n77 a owl:Restriction ;
+	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:disease .
-_:c14n77 rdf:first sdkg:Predicate\#causes ;
-	rdf:rest _:c14n171 .
-_:c14n78 rdf:first sdkg:EvidenceModel\#secondary_sjd ;
-	rdf:rest _:c14n35 .
-_:c14n79 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:directed .
+_:c14n78 rdf:first sdkg:Predicate\#causes ;
+	rdf:rest _:c14n174 .
+_:c14n79 rdf:first sdkg:EvidenceModel\#secondary_sjd ;
+	rdf:rest _:c14n36 .
 _:c14n8 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:trial_status .
 _:c14n80 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty sdkg:directed .
+_:c14n81 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:evidence_level .
-_:c14n81 a owl:Restriction ;
+_:c14n82 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:species .
-_:c14n82 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty sdkg:record_id .
 _:c14n83 a owl:Restriction ;
 	owl:minCardinality 1 ;
-	owl:onProperty sdkg:span_hash .
+	owl:onProperty sdkg:record_id .
 _:c14n84 a owl:Restriction ;
 	owl:minCardinality 1 ;
+	owl:onProperty sdkg:span_hash .
+_:c14n85 a owl:Restriction ;
+	owl:minCardinality 1 ;
 	owl:onProperty sdkg:negated .
-_:c14n85 rdf:first sdkg:EntityCategory\#gene_or_protein ;
-	rdf:rest _:c14n134 .
-_:c14n86 rdf:first sdkg:EvidenceLevel\#randomised_trial ;
-	rdf:rest _:c14n72 .
-_:c14n87 a owl:Restriction ;
+_:c14n86 rdf:first sdkg:EntityCategory\#gene_or_protein ;
+	rdf:rest _:c14n135 .
+_:c14n87 rdf:first sdkg:EvidenceLevel\#randomised_trial ;
+	rdf:rest _:c14n73 .
+_:c14n88 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:span_text .
-_:c14n88 rdf:first sdkg:Predicate\#expressed_in ;
-	rdf:rest _:c14n49 .
-_:c14n89 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:extraction_reliability .
+_:c14n89 rdf:first sdkg:Predicate\#expressed_in ;
+	rdf:rest _:c14n50 .
 _:c14n9 a owl:Restriction ;
 	owl:allValuesFrom sdkg:Sign ;
 	owl:onProperty sdkg:sign .
 _:c14n90 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty sdkg:extraction_reliability .
+_:c14n91 a owl:Restriction ;
 	owl:allValuesFrom linkml:String ;
 	owl:onProperty sdkg:pmid .
-_:c14n91 a owl:Restriction ;
+_:c14n92 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty sdkg:assay .
-_:c14n92 a owl:Restriction ;
+_:c14n93 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:predicate .
-_:c14n93 a owl:Restriction ;
+_:c14n94 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty sdkg:trial_phase .
-_:c14n94 rdf:first sdkg:EntityCategory\#stratification_subgroup ;
-	rdf:rest _:c14n54 .
-_:c14n95 rdf:first sdkg:Predicate\#gene_associated_with_condition ;
-	rdf:rest _:c14n42 .
-_:c14n96 a owl:Restriction ;
+_:c14n95 rdf:first sdkg:EntityCategory\#stratification_subgroup ;
+	rdf:rest _:c14n55 .
+_:c14n96 rdf:first sdkg:Predicate\#gene_associated_with_condition ;
+	rdf:rest _:c14n43 .
+_:c14n97 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty sdkg:pmid .
-_:c14n97 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:tissue .
 _:c14n98 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty sdkg:claim_status .
+	owl:onProperty sdkg:tissue .
 _:c14n99 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty sdkg:negative_claims .
+	owl:maxCardinality 1 ;
+	owl:onProperty sdkg:claim_status .
 

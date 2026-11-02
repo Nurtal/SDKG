@@ -147,6 +147,13 @@
             "null"
           ]
         },
+        "trial_id": {
+          "description": "A trial registry number, kept only if it appears in the abstract.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "trial_phase": {
           "type": [
             "string",
@@ -428,5 +435,5 @@
   "metamodel_version": "1.12.0",
   "title": "sdkg",
   "type": "object",
-  "version": "0.1.0-proposal"
+  "version": "0.2.0-provisional"
 }
