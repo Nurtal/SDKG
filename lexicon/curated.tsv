@@ -1,0 +1,8 @@
+mention	entity_id	label	category
+Sjögren's disease	MONDO:0010030	Sjogren syndrome	disease
+Sjögren disease	MONDO:0010030	Sjogren syndrome	disease
+Sjögren's syndrome	MONDO:0010030	Sjogren syndrome	disease
+primary Sjögren's disease	MONDO:0010030	Sjogren syndrome	disease
+primary Sjögren's syndrome	MONDO:0010030	Sjogren syndrome	disease
+pSS	MONDO:0010030	Sjogren syndrome	disease
+pSjD	MONDO:0010030	Sjogren syndrome	disease

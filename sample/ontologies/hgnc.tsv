@@ -1,0 +1,5 @@
+hgnc_id	symbol	name	status	alias_symbol	prev_symbol	uniprot_ids
+HGNC:90001	SYNA	synthetic gene a	Approved	SYNA-ALT|AB	OLDSYNA	Q00001
+HGNC:90002	SYNB	synthetic gene b	Approved	SHARED		Q00002
+HGNC:90003	SYNC	synthetic gene c	Entry Withdrawn			
+HGNC:90004	SYND	synthetic gene d	Approved	SHARED		

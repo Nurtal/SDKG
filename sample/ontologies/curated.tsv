@@ -1,0 +1,3 @@
+mention	entity_id	label	category
+CURATEDNAME	MONDO:9000001	synthetic disease	disease
+SHARED	HGNC:90002	SYNB	gene_or_protein

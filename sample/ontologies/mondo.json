@@ -1,0 +1,7 @@
+{"graphs":[{"id":"http://purl.obolibrary.org/obo/mondo.owl","nodes":[
+{"id":"http://purl.obolibrary.org/obo/MONDO_9000001","lbl":"synthetic disease","type":"CLASS","meta":{"synonyms":[{"pred":"hasExactSynonym","val":"exact synthetic disease"},{"pred":"hasRelatedSynonym","val":"related synthetic thing"},{"pred":"hasBroadSynonym","val":"broad synthetic thing"}],"xrefs":[{"val":"Orphanet:900001"},{"val":"OMIM:900002"},{"val":"MESH:D900003"}]}},
+{"id":"http://purl.obolibrary.org/obo/MONDO_9000002","lbl":"obsolete synthetic disease","type":"CLASS","meta":{"deprecated":true}},
+{"id":"http://purl.obolibrary.org/obo/HP_9000009","lbl":"phenotype imported into mondo","type":"CLASS"},
+{"id":"http://purl.obolibrary.org/obo/MONDO_9000003","type":"CLASS"},
+{"id":"http://purl.obolibrary.org/obo/mondo#property","lbl":"a property","type":"PROPERTY"}
+]}]}

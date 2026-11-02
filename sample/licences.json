@@ -35,6 +35,36 @@
       "status": "allowed",
       "licence": "test-only",
       "notes": "Applies only to the synthetic fixture in sample/databases. The real source remains unconfirmed in licences/manifest.json."
+    },
+    "hgnc": {
+      "status": "allowed",
+      "licence": "test-only",
+      "notes": "Applies only to synthetic fixtures. The real source remains unconfirmed in licences/manifest.json."
+    },
+    "mondo": {
+      "status": "allowed",
+      "licence": "test-only",
+      "notes": "Applies only to synthetic fixtures. The real source remains unconfirmed in licences/manifest.json."
+    },
+    "go": {
+      "status": "allowed",
+      "licence": "test-only",
+      "notes": "Applies only to synthetic fixtures. The real source remains unconfirmed in licences/manifest.json."
+    },
+    "cl": {
+      "status": "allowed",
+      "licence": "test-only",
+      "notes": "Applies only to synthetic fixtures. The real source remains unconfirmed in licences/manifest.json."
+    },
+    "uberon": {
+      "status": "allowed",
+      "licence": "test-only",
+      "notes": "Applies only to synthetic fixtures. The real source remains unconfirmed in licences/manifest.json."
+    },
+    "chebi": {
+      "status": "allowed",
+      "licence": "test-only",
+      "notes": "Applies only to synthetic fixtures. The real source remains unconfirmed in licences/manifest.json."
     }
   }
 }

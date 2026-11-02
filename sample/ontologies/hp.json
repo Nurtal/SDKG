@@ -1,0 +1,4 @@
+{"graphs":[{"id":"http://purl.obolibrary.org/obo/hp.owl","nodes":[
+{"id":"http://purl.obolibrary.org/obo/HP_9000001","lbl":"synthetic phenotype","type":"CLASS"},
+{"id":"http://purl.obolibrary.org/obo/HP_9000002","lbl":"exact synthetic disease","type":"CLASS"}
+]}]}
