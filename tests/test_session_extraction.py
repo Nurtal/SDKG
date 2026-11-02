@@ -17,6 +17,7 @@ def valid_claim(span="Synthetic test abstract", subject="IRF5") -> dict:
         "subject": subject, "predicate": "associated_with", "object": "Sjögren's disease", "span": span,
         "sign": None, "negated": False, "directed": None, "direct": None, "biomarker_role": None,
         "sjd_context": True, "trial_id": None,
+        "subject_category": "gene_or_protein", "object_category": "disease",
         "context": {"species": "human", "tissue": None, "population": None, "assay": None, "evidence_model": "human"},
     }
 
@@ -34,7 +35,7 @@ def import_session(ws: Path, rows: list[dict]) -> int:
     path = ws / "responses.jsonl"
     path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), "utf-8")
     return main(["import-session", "--corpus", str(ws / "sample/corpus"), "--responses", str(path),
-                 "--prompt", str(REPO / "pipeline/prompts/extract-v2.md"), "--archive", str(ws / "archive")])
+                 "--prompt", str(REPO / "pipeline/prompts/extract-v3.md"), "--archive", str(ws / "archive")])
 
 
 def build(ws: Path) -> sdkg.Release:

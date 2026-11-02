@@ -168,7 +168,8 @@ def run_build(
                 rejected["span_not_found"] += 1
                 continue
             start, end = located
-            subject, obj = names.resolve(claim["subject"]), names.resolve(claim["object"])
+            subject = names.resolve(claim["subject"], claim.get("subject_category"))
+            obj = names.resolve(claim["object"], claim.get("object_category"))
             cid = claim_id(claim, subject.entity_id, obj.entity_id, document["doc_id"], start, end)
             context = claim.get("context", {})
             row = {

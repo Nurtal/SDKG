@@ -71,7 +71,7 @@ def test_structured_output_requires_the_new_fields():
 
 
 def test_the_prompt_explains_the_new_fields():
-    prompt = (REPO / "pipeline/prompts/extract-v2.md").read_text("utf-8")
+    prompt = (REPO / "pipeline/prompts/extract-v3.md").read_text("utf-8")
 
     assert "`sjd_context`" in prompt and "`trial_id`" in prompt
 

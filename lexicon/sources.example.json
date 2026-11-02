@@ -23,7 +23,7 @@
       "path": "mondo.json",
       "prefix": "MONDO",
       "category": "disease",
-      "group": "clinical",
+      "group": "disease",
       "xrefs": true,
       "version": "FILL IN",
       "sha256": "FILL IN"
@@ -34,7 +34,7 @@
       "path": "hp.json",
       "prefix": "HP",
       "category": "phenotype",
-      "group": "clinical",
+      "group": "phenotype",
       "version": "FILL IN",
       "sha256": "FILL IN"
     },

@@ -4,6 +4,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import re
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Iterable, NamedTuple
@@ -11,6 +12,7 @@ from typing import Any, Iterable, NamedTuple
 from sdkg.licences import LicenceManifest
 from sdkg.normalise import normal_form
 
+HYPHENATED_SYMBOL = re.compile(r"([A-Z]{2,5})(\d{1,3})")
 MIN_MENTION_LENGTH = 3  # Shorter names are mostly collisions with other concepts.
 XREF_PREFIXES = {"Orphanet": "ORPHA", "ORPHA": "ORPHA", "OMIM": "OMIM"}  # Used by the HPO annotations.
 
@@ -20,6 +22,7 @@ class Entry(NamedTuple):
     entity_id: str
     label: str
     category: str
+    primary: bool = False  # An approved symbol or name beats another gene's alias.
 
 
 def _accession_map(entries: Iterable[Entry]) -> dict[str, str]:
@@ -32,10 +35,16 @@ def read_hgnc(path: Path, entry: dict[str, Any], known: dict[str, list[Entry]]) 
             if row["status"] != "Approved":
                 continue
             names = [row["symbol"], row["name"]]
-            for field in ("alias_symbol", "prev_symbol", "uniprot_ids"):
-                names += [n for n in (row.get(field) or "").strip('"').split("|") if n]
+            # IL21 is usually written IL-21 in abstracts.
+            hyphenated = HYPHENATED_SYMBOL.fullmatch(row["symbol"])
+            if hyphenated:
+                names.append(f"{hyphenated.group(1)}-{hyphenated.group(2)}")
             for name in names:
-                yield Entry(name, row["hgnc_id"], row["symbol"], "gene_or_protein")
+                yield Entry(name, row["hgnc_id"], row["symbol"], "gene_or_protein", True)
+            for field in ("alias_symbol", "prev_symbol", "uniprot_ids"):
+                for name in (row.get(field) or "").strip('"').split("|"):
+                    if name:
+                        yield Entry(name, row["hgnc_id"], row["symbol"], "gene_or_protein", False)
 
 
 def read_obo(path: Path, entry: dict[str, Any], known: dict[str, list[Entry]]) -> Iterable[Entry]:
@@ -118,12 +127,15 @@ def build_lexicon(config_path: str | Path, licences: str | Path, out: str | Path
         if digest != source["sha256"]:
             raise ValueError(f"The {source['source']} snapshot does not match its recorded hash")
         entries = [e for e in ADAPTERS[source["adapter"]](path, source, known) if len(e.mention.strip()) >= MIN_MENTION_LENGTH]
+        primary_forms = {normal_form(e.mention) for e in entries if e.primary}
         known.setdefault(source["source"], []).extend(entries)
         added = 0
         group = by_group[source["group"]]
         claimed = {form for form, entities in group.items() if entities}
         for entry in entries:
             form = normal_form(entry.mention)
+            if form in primary_forms and not entry.primary:
+                continue
             if form not in claimed:
                 group[form].add((entry.entity_id, entry.label, entry.category))
                 added += 1

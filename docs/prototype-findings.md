@@ -17,7 +17,8 @@ The 10 PMIDs are in `pipeline/prototype-pmids.txt`. Prompts were changed after r
 
 - **Typographic characters:** 28 of 72 real abstracts contain thin spaces, non-breaking spaces or special hyphens, so strict matching rejected valid passages. Matching now allows these differences, while words and numbers must still match.
 - **Plural cell names:** `B cells` and `T cells` did not resolve. Cell Ontology names now also match their plural.
-- **Disease and phenotype conflicts:** `lymphoma` and `rheumatoid arthritis` were ambiguous because both MONDO and HPO list them. MONDO now takes priority, unless a curated mention says otherwise.
+- **Disease and phenotype conflicts:** `lymphoma` and `rheumatoid arthritis` were ambiguous because both MONDO and HPO list them. The category assigned at extraction now decides.
+- **False gene matches:** `P300`, a brain potential, was mapped to the gene `EP300` through an alias. A mention now maps only to an entity of its assigned category. An approved gene symbol also beats another gene's alias, and `IL-21` now matches `IL21`.
 - **Missing instruments:** ESSDAI, ESSPRI, ClinESSDAI, anti-SSA/Ro and anti-SSB/La now have curated entries with local identifiers.
 - **Fragmented concepts:** the first prompt asked for concepts as written, which gave several names for one concept. The prompt asks for short standard names and keeps direction and tissue in their own fields.
 - **Predicate direction:** one predicate was used in both directions. The prompt defines the subject and object of each predicate.

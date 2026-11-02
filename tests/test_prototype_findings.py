@@ -97,15 +97,6 @@ def test_a_disease_and_a_phenotype_with_one_name_resolve_to_the_first_source_whe
     assert lexicon.resolve("exact synthetic disease").entity_id == "MONDO:9000001"
 
 
-def test_the_example_configuration_groups_diseases_and_phenotypes():
-    sources = json.loads((REPO / "lexicon/sources.example.json").read_text("utf-8"))["sources"]
-    groups = {s["source"]: s["group"] for s in sources}
-
-    assert groups["mondo"] == groups["hpo"]
-    assert [s["source"] for s in sources].index("mondo") < [s["source"] for s in sources].index("hpo")
-    assert next(s for s in sources if s["source"] == "cl").get("plurals") is True
-
-
 def test_sjd_instruments_and_autoantibodies_have_curated_entries(workspace):
     rows = {r.split("\t")[0]: r.split("\t") for r in (REPO / "lexicon/curated.tsv").read_text("utf-8").splitlines()[1:]}
 
@@ -160,7 +151,7 @@ def test_the_prototype_documents_are_recorded():
 def test_the_extraction_prompt_defines_each_predicate_and_sign():
     import yaml
 
-    prompt = (REPO / "pipeline/prompts/extract-v2.md").read_text("utf-8")
+    prompt = (REPO / "pipeline/prompts/extract-v3.md").read_text("utf-8")
     predicates = yaml.safe_load((REPO / "schema/sdkg.yaml").read_text("utf-8"))["enums"]["Predicate"]["permissible_values"]
 
     for predicate in predicates:

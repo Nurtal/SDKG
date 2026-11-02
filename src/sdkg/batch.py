@@ -41,6 +41,8 @@ def extraction_output_schema() -> dict[str, Any]:
         "negated": {"type": "boolean"}, "directed": nullable_bool, "direct": nullable_bool,
         "biomarker_role": _enum("BiomarkerRole"), "sjd_context": {"type": "boolean"},
         "trial_id": nullable_text,
+        "subject_category": _enum("EntityCategory", nullable=False),
+        "object_category": _enum("EntityCategory", nullable=False),
         "context": {"type": "object", "properties": context, "required": list(context), "additionalProperties": False},
     }
     return {
