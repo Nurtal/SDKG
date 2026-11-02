@@ -2,7 +2,7 @@
 
 The project lead asked Claude to answer the open expert questions so that work could continue without waiting for a domain expert. These decisions are provisional and are **not expert validation**. They must not be described as validated in the paper, and an expert can overturn any of them.
 
-1. **MONDO or HPO:** MONDO wins when a name is shared, because most shared names are true diseases. Common clinical findings in Sjögren's disease are curated to HPO, such as thrombocytopenia and keratoconjunctivitis sicca, because there they are manifestations. Lymphoma and interstitial lung disease stay in MONDO, as outcomes studied in their own right.
+1. **MONDO or HPO:** when a name is shared, the category assigned at extraction decides, because a name such as `lymphoma` can be a disease in one abstract and a finding in another. Common clinical findings in Sjögren's disease are curated to HPO, such as thrombocytopenia and keratoconjunctivitis sicca, because there they are manifestations.
 2. **Disease core:** a literature claim must be marked by extraction as observed in Sjögren's disease patients, samples or models (`sjd_context`). Other claims are rejected and counted, because the disease core must not depend on screening alone.
 3. **Unmatched concepts:** a local identifier is acceptable, and the concept is listed for review. No curated list of measures is added before the pilot shows which are frequent.
 4. **Complexes:** dimeric cytokines such as IL-35 get a local identifier, because mapping them to one gene would be false. Their components can be linked later.

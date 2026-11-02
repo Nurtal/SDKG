@@ -47,10 +47,16 @@ class Lexicon:
     def add(self, mention: str, entity_id: str, label: str, category: str) -> None:
         self._entries.setdefault(normal_form(mention), set()).add((entity_id, label, category))
 
-    def resolve(self, mention: str) -> Resolution:
+    def resolve(self, mention: str, category: str | None = None) -> Resolution:
+        """Map a mention. With a category, only entities of that category can match."""
         matches = self._entries.get(normal_form(mention), set())
+        if category and category != "unclassified":
+            typed = {m for m in matches if m[2] == category}
+            if matches and not typed:
+                return Resolution(local_id(mention), mention, category, False, "other_category")
+            matches = typed
         if len(matches) == 1:
-            entity_id, label, category = next(iter(matches))
-            return Resolution(entity_id, label, category, True)
+            entity_id, label, found = next(iter(matches))
+            return Resolution(entity_id, label, found, True)
         reason = "ambiguous" if matches else "no_match"
-        return Resolution(local_id(mention), mention, "unclassified", False, reason)
+        return Resolution(local_id(mention), mention, category or "unclassified", False, reason)
