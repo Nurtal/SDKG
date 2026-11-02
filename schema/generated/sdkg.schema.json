@@ -282,6 +282,7 @@
         "biomarker",
         "autoantibody",
         "drug",
+        "chemical",
         "clinical_trial",
         "clinical_endpoint",
         "patient_population",

@@ -82,7 +82,7 @@
       "adapter": "obo",
       "path": "chebi.json",
       "prefix": "CHEBI",
-      "category": "drug",
+      "category": "chemical",
       "group": "drug",
       "version": "FILL IN",
       "sha256": "FILL IN"

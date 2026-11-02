@@ -13,6 +13,11 @@ from sdkg.licences import LicenceManifest
 from sdkg.normalise import normal_form
 
 HYPHENATED_SYMBOL = re.compile(r"([A-Z]{2,5})(\d{1,3})")
+# MONDO's animal diseases share names with human ones, and this graph is about human disease.
+VETERINARY = re.compile(
+    r"non-human animal|, (dog|cat|horse|cattle|pig|sheep|goat|chicken|rabbit|mouse|rat|monkey|rhesus macaque|"
+    r"water buffalo|llama|alpaca|donkey|deer|turkey|duck|fish|ferret|guinea pig|hamster)$", re.I
+)
 MIN_MENTION_LENGTH = 3  # Shorter names are mostly collisions with other concepts.
 XREF_PREFIXES = {"Orphanet": "ORPHA", "ORPHA": "ORPHA", "OMIM": "OMIM"}  # Used by the HPO annotations.
 
@@ -56,6 +61,8 @@ def read_obo(path: Path, entry: dict[str, Any], known: dict[str, list[Entry]]) -
             meta = node.get("meta") or {}
             label = node.get("lbl")
             if node.get("type") != "CLASS" or marker not in node["id"] or meta.get("deprecated") or not label:
+                continue
+            if prefix == "MONDO" and VETERINARY.search(label):
                 continue
             entity_id = f"{prefix}:{node['id'].split(marker)[1]}"
             names = [label] + [s["val"] for s in meta.get("synonyms") or [] if s.get("pred") == "hasExactSynonym"]
