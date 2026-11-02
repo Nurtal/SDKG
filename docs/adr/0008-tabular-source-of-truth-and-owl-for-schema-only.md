@@ -1,0 +1,3 @@
+# Use tables as the source of truth, and OWL for the schema only
+
+The original proposal listed RDF, OWL, JSON-LD and GraphML as equivalent exports, but they do not represent the same thing. We use Parquet/TSV tables with a LinkML schema as the source of truth, because computation is the primary use. RDF and JSON-LD are lossless derivatives, and GraphML and edge lists are collapsed. OWL covers the schema only, because exporting every instance would add weight with little value. LinkML generates the OWL schema, JSON-LD context and SHACL constraints, so they don't have to be maintained separately.

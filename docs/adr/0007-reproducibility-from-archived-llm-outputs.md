@@ -1,0 +1,3 @@
+# Define reproducibility as a rebuild from archived LLM outputs
+
+LLM output is not deterministic and models can be retired, so re-running extraction will never reproduce a graph exactly. Reproducibility therefore means that a release can be rebuilt deterministically from archived raw outputs and frozen sources, without an API key or LLM costs. Each raw output is archived with its model, version, prompt, schema and document hash. Running the extraction again produces a new release, published with a report of the differences. Archiving depends on the legal review in [ADR-0006](0006-open-redistribution-only.md).

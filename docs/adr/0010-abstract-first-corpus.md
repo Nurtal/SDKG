@@ -1,0 +1,3 @@
+# Extract from primary-research abstracts first
+
+Full text costs much more to process and covers only part of the literature, which would make coverage uneven across the graph. v1 therefore extracts from a frozen PubMed corpus of primary-research abstracts, after relevance screening and the exclusion of Sjögren-Larsson syndrome. A subset of open-access full text is used to measure what abstracts miss. Reviews only help discover leads and never count as evidence, because they would double-count the studies they summarise. Case reports are excluded, even though some rare manifestations may be missed.
