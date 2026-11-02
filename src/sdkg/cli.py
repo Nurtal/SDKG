@@ -10,6 +10,7 @@ from sdkg.batch import BatchRunner, extraction_output_schema, screening_output_s
 from sdkg.build import run_build
 from sdkg.hydrate import hydrate
 from sdkg.site import run_site
+from sdkg.lexicon import build_lexicon
 from sdkg.schema_tools import SCHEMA_DIR, generate_all
 from sdkg.validation import run_evaluate, run_sample
 from sdkg.corpus import apply_screening, fetch_pubmed_xml, freeze_corpus, run_screen, screening_sample
@@ -79,6 +80,12 @@ def parser() -> argparse.ArgumentParser:
     screen_sample.add_argument("--seed", required=True, type=int)
     screen_sample.add_argument("--size", required=True, type=int)
     screen_sample.add_argument("--out", required=True)
+
+    lexicon = commands.add_parser("lexicon", help="Build the lexicon from frozen gene and ontology snapshots")
+    lexicon.add_argument("--config", required=True)
+    lexicon.add_argument("--licences", required=True)
+    lexicon.add_argument("--out", required=True)
+    lexicon.add_argument("--allow-unconfirmed", action="store_true", help="Private use only: the report is marked not publishable")
 
     site = commands.add_parser("site", help="Generate the static website from a release")
     site.add_argument("--release", required=True)
@@ -173,6 +180,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         run_screen(args.corpus, Path(args.prompt).read_text("utf-8"), RecordedDecisions(args.recorded), args.archive, args.out)
     elif args.command == "screen-sample":
         screening_sample(args.screened, args.seed, args.size, args.out)
+    elif args.command == "lexicon":
+        build_lexicon(args.config, args.licences, args.out, args.allow_unconfirmed)
     elif args.command == "site":
         run_site(args.release, args.out, args.data_notice, args.downloads_url)
     elif args.command == "temporal-test":

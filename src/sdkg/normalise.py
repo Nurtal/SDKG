@@ -36,7 +36,7 @@ class Lexicon:
     def __init__(self, path: str | Path):
         self._entries: dict[str, set[tuple[str, str, str]]] = {}
         with Path(path).open(encoding="utf-8", newline="") as handle:
-            for row in csv.DictReader(handle, delimiter="\t"):
+            for row in csv.DictReader(handle, delimiter="\t", quoting=csv.QUOTE_NONE):
                 entry = (row["entity_id"], row["label"], row["category"])
                 self._entries.setdefault(normal_form(row["mention"]), set()).add(entry)
 
