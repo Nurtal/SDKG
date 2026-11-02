@@ -37,7 +37,7 @@ class RecordedDecisions(RecordedClient):
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
-    return [json.loads(l) for l in path.read_text("utf-8").splitlines() if l.strip()]
+    return [json.loads(l) for l in path.read_text("utf-8").split("\n") if l.strip()]
 
 
 def load_documents(corpus: str | Path) -> list[dict[str, Any]]:

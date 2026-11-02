@@ -110,3 +110,15 @@ def test_no_command_can_call_a_paid_api(command, capsys):
         main([command, "--help"])
 
     assert "max-spend" not in capsys.readouterr().out
+
+
+@pytest.mark.parametrize("char", [" ", " ", "\x85", "\x0b", "\x0c"])
+def test_unicode_line_separators_in_an_abstract_do_not_break_the_corpus(workspace, char):
+    from sdkg.extraction import load_documents
+
+    path = workspace / "sample/corpus/documents.jsonl"
+    rows = [json.loads(l) for l in path.read_text("utf-8").split("\n") if l]
+    rows[0]["text"] = f"First part.{char}Second part."
+    path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), "utf-8", newline="\n")
+
+    assert load_documents(workspace / "sample/corpus")[0]["text"] == f"First part.{char}Second part."
