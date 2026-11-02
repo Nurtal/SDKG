@@ -25,7 +25,7 @@ The graph is intended to support network analysis, graph machine learning, and t
 
 - **Content:** defined by the [competency questions](docs/competency-questions.md). Comprehensiveness is a long-term aim, not a v1 criterion.
 - **Population:** human primary SjD. Secondary SjD, animal and in vitro evidence are included only when tagged and filterable.
-- **Literature:** primary-research PubMed abstracts, with about 12,600 records before relevance screening. This count comes from a provisional query run on 2026-11-02. Open-access full text is used only on a comparison subset.
+- **Literature:** primary-research PubMed abstracts, with 12,408 records frozen on 2026-11-02. Abstracts on therapeutic targets and mechanisms are read first (ADR-0014), so the graph is partial and not representative of the whole corpus.
 - **Databases:** UniProt, Reactome, ChEMBL, HPO annotations, ClinicalTrials.gov and Open Targets, all subject to licence confirmation.
 
 ### Out of scope for v1

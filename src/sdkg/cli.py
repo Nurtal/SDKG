@@ -88,6 +88,7 @@ def parser() -> argparse.ArgumentParser:
     batch.add_argument("--size", required=True, type=int)
     batch.add_argument("--seed", required=True, type=int)
     batch.add_argument("--split", choices=["development", "evaluation"])
+    batch.add_argument("--topic", help="Keep only abstracts matching the terms in this file")
     batch.add_argument("--out", required=True)
 
     session = commands.add_parser("import-session", help="Archive claims extracted in a session, with no paid API")
@@ -167,7 +168,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     elif args.command == "lexicon":
         build_lexicon(args.config, args.licences, args.out, args.allow_unconfirmed)
     elif args.command == "next-batch":
-        remaining = next_batch(args.corpus, args.archive, args.size, args.seed, args.out, args.split)
+        remaining = next_batch(args.corpus, args.archive, args.size, args.seed, args.out, args.split, args.topic)
         print(f"{remaining} documents remain before this batch")
     elif args.command == "import-session":
         print(f"{import_session(args.corpus, args.responses, Path(args.prompt).read_text('utf-8'), args.archive)} documents archived")

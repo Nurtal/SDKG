@@ -1,0 +1,96 @@
+# One term per line, matched case-insensitively on whole words in the title and abstract.
+# B-cell axis
+BAFF
+BLyS
+TNFSF13
+a proliferation-inducing ligand
+TNFSF13B
+TNFRSF13C
+belimumab
+ianalumab
+telitacicept
+atacicept
+rituximab
+epratuzumab
+obinutuzumab
+CD20
+CD22
+BTK
+remibrutinib
+tirabrutinib
+germinal center
+germinal centre
+B cell activation
+# T-cell and costimulation
+abatacept
+CD40
+CD40L
+iscalimab
+dazodalibep
+follicular helper
+Tfh
+Th17
+IL-17
+IL-21
+# Interferon and innate pathways
+interferon signature
+type I interferon
+type I IFN
+IFN-alpha
+plasmacytoid dendritic
+TLR7
+TLR9
+cGAS
+cGAS-STING
+TMEM173
+anifrolumab
+hydroxychloroquine
+# Signalling
+JAK
+JAK1
+STAT1
+STAT3
+tofacitinib
+baricitinib
+filgotinib
+upadacitinib
+deucravacitinib
+TYK2
+PI3K
+seletalisib
+parsaclisib
+NF-kappaB
+# Cytokines and receptors
+IL-6
+tocilizumab
+TNF-alpha
+etanercept
+infliximab
+IL-7
+lusvertikimab
+IL-12
+IL-23
+IL-18
+CXCL13
+CXCR5
+FcRn
+nipocalimab
+efgartigimod
+# Genetics and targets
+therapeutic target
+genome-wide association
+IRF5
+STAT4
+# Glandular function
+M3R
+muscarinic
+AQP5
+pilocarpine
+cevimeline
+# Other agents
+leflunomide
+mycophenolate
+methotrexate
+azathioprine
+cyclosporine
+sirolimus

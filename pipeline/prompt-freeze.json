@@ -1,0 +1,6 @@
+{
+  "prompt": "pipeline/prompts/extract-v3.md",
+  "prompt_hash": "f2714ffacd529ec4735dd1647a758ac3b5872fab31cf29666898bafd6269e11c",
+  "frozen_on": "2026-11-02",
+  "note": "Frozen without a human precision measure on the development set. See ADR-0014."
+}

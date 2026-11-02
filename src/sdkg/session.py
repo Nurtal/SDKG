@@ -3,12 +3,14 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from pathlib import Path
 from typing import Any
 
 import jsonschema
 
 from sdkg.batch import extraction_output_schema
+from sdkg.normalise import normal_form
 from sdkg.extraction import RecordedClient, archive_path, load_documents, read_jsonl, run_extract
 
 SESSION_MODEL = "claude-opus-5-5"
@@ -20,9 +22,31 @@ class SessionClient(RecordedClient):
     model_version = SESSION_VERSION
 
 
-def next_batch(corpus: str | Path, archive: str | Path, size: int, seed: int, out: str | Path, split: str | None = None) -> int:
+def topic_pattern(path: str | Path) -> re.Pattern[str]:
+    """Compile a topic file. Terms match whole words, on the same normal form as mentions."""
+    lines = (l.strip() for l in Path(path).read_text("utf-8").split("\n"))
+    terms = sorted({normal_form(l) for l in lines if l and not l.startswith("#")}, key=len, reverse=True)
+    return re.compile(r"(?<![\w-])(?:" + "|".join(re.escape(t) for t in terms) + r")(?![\w-])")
+
+
+def matches_topic(document: dict[str, Any], pattern: re.Pattern[str]) -> bool:
+    return bool(pattern.search(normal_form(f"{document.get('title') or ''} {document.get('text') or ''}")))
+
+
+def next_batch(
+    corpus: str | Path,
+    archive: str | Path,
+    size: int,
+    seed: int,
+    out: str | Path,
+    split: str | None = None,
+    topic: str | Path | None = None,
+) -> int:
     """Write the next documents to read, in a reproducible random order. Returns how many remain in all."""
     documents = [d for d in load_documents(corpus) if split is None or d.get("split") == split]
+    if topic:
+        pattern = topic_pattern(topic)
+        documents = [d for d in documents if matches_topic(d, pattern)]
     remaining = [d for d in documents if not archive_path(Path(archive), d["doc_id"]).exists()]
     remaining.sort(key=lambda d: hashlib.sha256(f"{seed}:{d['doc_id']}".encode()).hexdigest())
     rows = [{k: d.get(k) for k in ("doc_id", "title", "text", "year", "study_type")} for d in remaining[:size]]
