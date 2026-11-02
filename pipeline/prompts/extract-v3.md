@@ -13,7 +13,8 @@ A claim states that this publication asserts a relationship between two concepts
   - Use one name for one concept throughout the abstract.
   - Write out an abbreviation that the abstract defines, unless the abbreviation is the standard name.
 - `subject_category`, `object_category`: what kind of concept this is here. A name is only matched to entities of the same kind, so choose by meaning in this abstract. For example, `P300` as a brain potential is a `clinical_endpoint`, not a gene.
-  - `gene_or_protein`, `genetic_variant`, `pathway_or_process`, `cell_type`, `tissue_or_anatomy`, `drug`, `autoantibody`, `biomarker`, `assay`
+  - `gene_or_protein`, `genetic_variant`, `pathway_or_process`, `cell_type`, `tissue_or_anatomy`, `drug`, `chemical` for other small molecules, `autoantibody`, `assay`
+  - `biomarker` only when the concept cannot be named as any of the above
   - `disease` for a condition studied in its own right, `phenotype` for a sign, symptom or finding
   - `clinical_endpoint` for a measure, score or laboratory value, `clinical_trial`, `patient_population`
   - `published_stratification`, `stratification_subgroup`

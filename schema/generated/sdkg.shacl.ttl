@@ -7,19 +7,19 @@ sdkg:Claim a sh:NodeShape ;
 	rdfs:comment "A statement that a source asserts a relationship between two entities in a context." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n15 ;
-	sh:property _:c14n10 , _:c14n101 , _:c14n12 , _:c14n21 , _:c14n31 , _:c14n33 , _:c14n42 , _:c14n47 , _:c14n49 , _:c14n50 , _:c14n51 , _:c14n53 , _:c14n69 , _:c14n70 , _:c14n74 , _:c14n78 , _:c14n8 , _:c14n82 , _:c14n88 , _:c14n89 , _:c14n9 , _:c14n91 , _:c14n92 , _:c14n94 , _:c14n99 ;
+	sh:property _:c14n10 , _:c14n100 , _:c14n102 , _:c14n12 , _:c14n21 , _:c14n31 , _:c14n33 , _:c14n42 , _:c14n47 , _:c14n49 , _:c14n50 , _:c14n51 , _:c14n53 , _:c14n69 , _:c14n70 , _:c14n74 , _:c14n79 , _:c14n8 , _:c14n83 , _:c14n89 , _:c14n9 , _:c14n90 , _:c14n92 , _:c14n93 , _:c14n95 ;
 	sh:targetClass sdkg:Claim .
 sdkg:ClaimGroup a sh:NodeShape ;
 	rdfs:comment "Claims with the same normalised subject, predicate, object and context." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n7 ;
-	sh:property _:c14n105 , _:c14n14 , _:c14n32 , _:c14n43 , _:c14n60 ;
+	sh:property _:c14n106 , _:c14n14 , _:c14n32 , _:c14n43 , _:c14n60 ;
 	sh:targetClass sdkg:ClaimGroup .
 sdkg:Contradiction a sh:NodeShape ;
 	rdfs:comment "Two claims about the same subject and object, in compatible contexts, with opposite signs." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n93 ;
-	sh:property _:c14n110 , _:c14n57 ;
+	sh:ignoredProperties _:c14n94 ;
+	sh:property _:c14n111 , _:c14n57 ;
 	sh:targetClass sdkg:Contradiction .
 sdkg:Entity a sh:NodeShape ;
 	rdfs:comment "A concept that claims are about." ;
@@ -30,14 +30,14 @@ sdkg:Entity a sh:NodeShape ;
 sdkg:Evidence a sh:NodeShape ;
 	rdfs:comment "Where a claim's evidence span is. Its text is included only when licensing allows." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n95 ;
-	sh:property _:c14n106 , _:c14n37 , _:c14n38 , _:c14n45 , _:c14n48 , _:c14n61 ;
+	sh:ignoredProperties _:c14n96 ;
+	sh:property _:c14n107 , _:c14n37 , _:c14n38 , _:c14n45 , _:c14n48 , _:c14n61 ;
 	sh:targetClass sdkg:Evidence .
 sdkg:HeldOutAssociation a sh:NodeShape ;
 	rdfs:comment "An Open Targets SjD association reserved for evaluation, kept out of the graph (ADR-0011)." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n66 ;
-	sh:property _:c14n112 , _:c14n18 , _:c14n81 , _:c14n97 ;
+	sh:property _:c14n113 , _:c14n18 , _:c14n82 , _:c14n98 ;
 	sh:targetClass sdkg:HeldOutAssociation .
 _:c14n0 sh:in _:c14n39 ;
 	sh:maxCount 1 ;
@@ -45,52 +45,58 @@ _:c14n0 sh:in _:c14n39 ;
 	sh:order 2 ;
 	sh:path sdkg:category .
 _:c14n1 rdf:first "pathway_or_process" ;
-	rdf:rest _:c14n98 .
+	rdf:rest _:c14n99 .
 _:c14n10 sh:datatype xsd:string ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 11 ;
 	sh:path sdkg:assay .
-_:c14n100 rdf:first "curated_source" ;
+_:c14n100 sh:datatype xsd:string ;
+	sh:description "The stable identifier of a claim, derived from its normalised content." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path sdkg:claim_id .
+_:c14n101 rdf:first "curated_source" ;
 	rdf:rest _:c14n76 .
-_:c14n101 sh:in _:c14n80 ;
+_:c14n102 sh:in _:c14n81 ;
 	sh:maxCount 1 ;
 	sh:order 12 ;
 	sh:path sdkg:evidence_model .
-_:c14n102 rdf:first "stratification_subgroup" ;
+_:c14n103 rdf:first "stratification_subgroup" ;
 	rdf:rest _:c14n13 .
-_:c14n103 rdf:first "manifestation_of" ;
+_:c14n104 rdf:first "manifestation_of" ;
 	rdf:rest _:c14n67 .
-_:c14n104 rdf:first "disease_core" ;
+_:c14n105 rdf:first "disease_core" ;
 	rdf:rest _:c14n71 .
-_:c14n105 sh:datatype xsd:integer ;
+_:c14n106 sh:datatype xsd:integer ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 3 ;
 	sh:path sdkg:negative_claims .
-_:c14n106 sh:datatype xsd:string ;
+_:c14n107 sh:datatype xsd:string ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 5 ;
 	sh:path sdkg:span_text .
-_:c14n107 rdf:first "human_observational" ;
-	rdf:rest _:c14n77 .
-_:c14n108 rdf:first "negative" ;
+_:c14n108 rdf:first "human_observational" ;
+	rdf:rest _:c14n78 .
+_:c14n109 rdf:first "negative" ;
 	rdf:rest rdf:nil .
-_:c14n109 rdf:first "causes" ;
-	rdf:rest _:c14n35 .
 _:c14n11 rdf:first "treatment_response" ;
 	rdf:rest rdf:nil .
-_:c14n110 sh:datatype xsd:string ;
+_:c14n110 rdf:first "causes" ;
+	rdf:rest _:c14n35 .
+_:c14n111 sh:datatype xsd:string ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 0 ;
 	sh:path sdkg:claim_id_a .
-_:c14n111 rdf:first "regulates" ;
-	rdf:rest _:c14n109 .
-_:c14n112 sh:datatype xsd:string ;
+_:c14n112 rdf:first "regulates" ;
+	rdf:rest _:c14n110 .
+_:c14n113 sh:datatype xsd:string ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
@@ -153,7 +159,7 @@ _:c14n27 rdf:first "patient_population" ;
 _:c14n28 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
 _:c14n29 rdf:first "drug" ;
-	rdf:rest _:c14n40 .
+	rdf:rest _:c14n77 .
 _:c14n3 rdf:first "treats" ;
 	rdf:rest _:c14n72 .
 _:c14n30 sh:datatype xsd:string ;
@@ -231,8 +237,8 @@ _:c14n45 sh:datatype xsd:string ;
 	sh:order 0 ;
 	sh:path sdkg:claim_id .
 _:c14n46 rdf:first "associated_with" ;
-	rdf:rest _:c14n84 .
-_:c14n47 sh:in _:c14n104 ;
+	rdf:rest _:c14n85 .
+_:c14n47 sh:in _:c14n105 ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:order 14 ;
@@ -269,7 +275,7 @@ _:c14n53 sh:datatype xsd:string ;
 	sh:order 10 ;
 	sh:path sdkg:population .
 _:c14n54 rdf:first "physically_interacts_with" ;
-	rdf:rest _:c14n87 .
+	rdf:rest _:c14n88 .
 _:c14n55 rdf:first "in_vitro" ;
 	rdf:rest rdf:nil .
 _:c14n56 rdf:first "altered_in" ;
@@ -283,7 +289,7 @@ _:c14n57 sh:datatype xsd:string ;
 _:c14n58 rdf:first "biomarker_for" ;
 	rdf:rest _:c14n22 .
 _:c14n59 rdf:first "human_genetic" ;
-	rdf:rest _:c14n107 .
+	rdf:rest _:c14n108 .
 _:c14n6 rdf:first "gene_associated_with_condition" ;
 	rdf:rest _:c14n34 .
 _:c14n60 sh:datatype xsd:integer ;
@@ -299,7 +305,7 @@ _:c14n61 sh:datatype xsd:integer ;
 	sh:order 2 ;
 	sh:path sdkg:span_start .
 _:c14n62 rdf:first "decreases_likelihood_of" ;
-	rdf:rest _:c14n111 .
+	rdf:rest _:c14n112 .
 _:c14n63 rdf:first "animal" ;
 	rdf:rest _:c14n55 .
 _:c14n64 rdf:first "curated_database" ;
@@ -311,7 +317,7 @@ _:c14n66 rdf:first rdf:type ;
 _:c14n67 rdf:first "has_phenotype" ;
 	rdf:rest _:c14n58 .
 _:c14n68 rdf:first "expressed_in" ;
-	rdf:rest _:c14n83 .
+	rdf:rest _:c14n84 .
 _:c14n69 sh:in _:c14n24 ;
 	sh:maxCount 1 ;
 	sh:order 13 ;
@@ -327,108 +333,104 @@ _:c14n70 sh:datatype xsd:boolean ;
 _:c14n71 rdf:first "background" ;
 	rdf:rest rdf:nil .
 _:c14n72 rdf:first "affects" ;
-	rdf:rest _:c14n86 .
+	rdf:rest _:c14n87 .
 _:c14n73 rdf:first "published_stratification" ;
-	rdf:rest _:c14n102 .
+	rdf:rest _:c14n103 .
 _:c14n74 sh:in _:c14n75 ;
 	sh:maxCount 1 ;
 	sh:order 4 ;
 	sh:path sdkg:sign .
 _:c14n75 rdf:first "positive" ;
-	rdf:rest _:c14n108 .
+	rdf:rest _:c14n109 .
 _:c14n76 rdf:first "ai_extracted" ;
-	rdf:rest _:c14n96 .
-_:c14n77 rdf:first "animal_or_in_vitro" ;
-	rdf:rest _:c14n85 .
-_:c14n78 sh:in _:c14n100 ;
+	rdf:rest _:c14n97 .
+_:c14n77 rdf:first "chemical" ;
+	rdf:rest _:c14n40 .
+_:c14n78 rdf:first "animal_or_in_vitro" ;
+	rdf:rest _:c14n86 .
+_:c14n79 sh:in _:c14n101 ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:order 15 ;
 	sh:path sdkg:claim_status .
-_:c14n79 rdf:first "tissue_or_anatomy" ;
-	rdf:rest _:c14n25 .
 _:c14n8 sh:datatype xsd:float ;
 	sh:description "Estimated per predicate from the test sample. Empty until that review exists." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 17 ;
 	sh:path sdkg:extraction_reliability .
-_:c14n80 rdf:first "human" ;
+_:c14n80 rdf:first "tissue_or_anatomy" ;
+	rdf:rest _:c14n25 .
+_:c14n81 rdf:first "human" ;
 	rdf:rest _:c14n4 .
-_:c14n81 sh:datatype xsd:string ;
+_:c14n82 sh:datatype xsd:string ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path sdkg:disease .
-_:c14n82 sh:datatype xsd:string ;
+_:c14n83 sh:datatype xsd:string ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 9 ;
 	sh:path sdkg:tissue .
-_:c14n83 rdf:first "located_in" ;
+_:c14n84 rdf:first "located_in" ;
 	rdf:rest _:c14n56 .
-_:c14n84 rdf:first "correlated_with" ;
-	rdf:rest _:c14n103 .
-_:c14n85 rdf:first "unspecified" ;
+_:c14n85 rdf:first "correlated_with" ;
+	rdf:rest _:c14n104 .
+_:c14n86 rdf:first "unspecified" ;
 	rdf:rest rdf:nil .
-_:c14n86 rdf:first "has_member" ;
+_:c14n87 rdf:first "has_member" ;
 	rdf:rest _:c14n44 .
-_:c14n87 rdf:first "participates_in" ;
+_:c14n88 rdf:first "participates_in" ;
 	rdf:rest _:c14n68 .
-_:c14n88 sh:datatype xsd:string ;
+_:c14n89 sh:datatype xsd:string ;
 	sh:description "The record's identifier within its source." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 20 ;
 	sh:path sdkg:source_record .
-_:c14n89 sh:datatype xsd:string ;
-	sh:maxCount 1 ;
-	sh:minCount 1 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 1 ;
-	sh:path sdkg:subject .
 _:c14n9 sh:datatype xsd:string ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 23 ;
 	sh:path sdkg:trial_status .
-_:c14n90 rdf:first "randomised_trial" ;
+_:c14n90 sh:datatype xsd:string ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path sdkg:subject .
+_:c14n91 rdf:first "randomised_trial" ;
 	rdf:rest _:c14n64 .
-_:c14n91 sh:datatype xsd:string ;
+_:c14n92 sh:datatype xsd:string ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 18 ;
 	sh:path sdkg:source .
-_:c14n92 sh:in _:c14n90 ;
+_:c14n93 sh:in _:c14n91 ;
 	sh:maxCount 1 ;
 	sh:order 16 ;
 	sh:path sdkg:evidence_level .
-_:c14n93 rdf:first rdf:type ;
+_:c14n94 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n94 sh:datatype xsd:string ;
+_:c14n95 sh:datatype xsd:string ;
 	sh:description "A trial registry number, kept only if it appears in the abstract." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 21 ;
 	sh:path sdkg:trial_id .
-_:c14n95 rdf:first rdf:type ;
+_:c14n96 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n96 rdf:first "human_reviewed" ;
+_:c14n97 rdf:first "human_reviewed" ;
 	rdf:rest rdf:nil .
-_:c14n97 sh:datatype xsd:string ;
+_:c14n98 sh:datatype xsd:string ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 0 ;
 	sh:path sdkg:target .
-_:c14n98 rdf:first "cell_type" ;
-	rdf:rest _:c14n79 .
-_:c14n99 sh:datatype xsd:string ;
-	sh:description "The stable identifier of a claim, derived from its normalised content." ;
-	sh:maxCount 1 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 0 ;
-	sh:path sdkg:claim_id .
+_:c14n99 rdf:first "cell_type" ;
+	rdf:rest _:c14n80 .
 

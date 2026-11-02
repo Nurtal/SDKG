@@ -37,3 +37,42 @@ IL-27	sdkg:il_27	IL-27 (dimer)	gene_or_protein
 IL27	sdkg:il_27	IL-27 (dimer)	gene_or_protein
 IL-35	sdkg:il_35	IL-35 (dimer)	gene_or_protein
 IL35	sdkg:il_35	IL-35 (dimer)	gene_or_protein
+IFN-gamma	HGNC:5438	IFNG	gene_or_protein
+interferon-gamma	HGNC:5438	IFNG	gene_or_protein
+IFN-beta	HGNC:5434	IFNB1	gene_or_protein
+IL-1beta	HGNC:5992	IL1B	gene_or_protein
+IL-1alpha	HGNC:5991	IL1A	gene_or_protein
+TGF-beta	HGNC:11766	TGFB1	gene_or_protein
+beta2 microglobulin	HGNC:914	B2M	gene_or_protein
+beta2-microglobulin	HGNC:914	B2M	gene_or_protein
+BAFF-R	HGNC:17755	TNFRSF13C	gene_or_protein
+APRIL	HGNC:11928	TNFSF13	gene_or_protein
+CD40L	HGNC:11935	CD40LG	gene_or_protein
+CD4+ T cell	CL:0000624	CD4-positive, alpha-beta T cell	cell_type
+CD4+ T cells	CL:0000624	CD4-positive, alpha-beta T cell	cell_type
+CD8+ T cell	CL:0000625	CD8-positive, alpha-beta T cell	cell_type
+CD8+ T cells	CL:0000625	CD8-positive, alpha-beta T cell	cell_type
+Th1	CL:0000545	T-helper 1 cell	cell_type
+Th1 cells	CL:0000545	T-helper 1 cell	cell_type
+Th2	CL:0000546	T-helper 2 cell	cell_type
+Th2 cells	CL:0000546	T-helper 2 cell	cell_type
+Th17	CL:0000899	T-helper 17 cell	cell_type
+Th17 cells	CL:0000899	T-helper 17 cell	cell_type
+Tfh	CL:0002038	T follicular helper cell	cell_type
+Tfh cells	CL:0002038	T follicular helper cell	cell_type
+follicular helper T cells	CL:0002038	T follicular helper cell	cell_type
+pDC	CL:0000784	plasmacytoid dendritic cell	cell_type
+pDCs	CL:0000784	plasmacytoid dendritic cell	cell_type
+NK cells	CL:0000623	natural killer cell	cell_type
+SGEC	sdkg:salivary_gland_epithelial_cell	salivary gland epithelial cell	cell_type
+SGECs	sdkg:salivary_gland_epithelial_cell	salivary gland epithelial cell	cell_type
+salivary gland epithelial cell	sdkg:salivary_gland_epithelial_cell	salivary gland epithelial cell	cell_type
+salivary gland epithelial cells	sdkg:salivary_gland_epithelial_cell	salivary gland epithelial cell	cell_type
+IgG	sdkg:serum_igg	serum IgG	clinical_endpoint
+immunoglobulin G	sdkg:serum_igg	serum IgG	clinical_endpoint
+IgA	sdkg:serum_iga	serum IgA	clinical_endpoint
+IgM	sdkg:serum_igm	serum IgM	clinical_endpoint
+erythrocyte sedimentation rate	sdkg:esr	erythrocyte sedimentation rate	clinical_endpoint
+ESR	sdkg:esr	erythrocyte sedimentation rate	clinical_endpoint
+estimated glomerular filtration rate	sdkg:egfr	estimated glomerular filtration rate	clinical_endpoint
+eGFR	sdkg:egfr	estimated glomerular filtration rate	clinical_endpoint

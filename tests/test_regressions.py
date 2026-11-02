@@ -49,7 +49,7 @@ def test_local_identifiers_survive_the_lossless_exports(workspace):
     release = build_with(workspace, {A: [make_claim(subject="TNF-α")]})
 
     for reader, name in ((read_rdf_export, "graph.nt"), (read_jsonld_export, "graph.jsonld")):
-        assert any("α" in entity for entity in reader(release / "exports" / name)["entities"])
+        assert any("alpha" in entity for entity in reader(release / "exports" / name)["entities"])
 
 
 def test_span_retrieval_skips_curated_claims_that_have_no_publication(workspace):

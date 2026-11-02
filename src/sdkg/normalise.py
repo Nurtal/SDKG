@@ -12,12 +12,22 @@ from pathlib import Path
 HYPHENS = re.compile("[\u2010\u2011\u2012\u2013\u2014\u2015\u2212]")
 
 
+# Abstracts write IFN-γ and IFN-gamma interchangeably.
+GREEK = str.maketrans({
+    "α": "alpha", "β": "beta", "γ": "gamma", "δ": "delta", "ε": "epsilon", "κ": "kappa",
+    "λ": "lambda", "σ": "sigma", "τ": "tau", "θ": "theta", "ω": "omega",
+})
+# A mention of these categories can match an entity of any listed category.
+COMPATIBLE = {"drug": {"drug", "chemical"}, "chemical": {"drug", "chemical"}}
+
+
 def normal_form(mention: str) -> str:
     text = unicodedata.normalize("NFKD", mention)
     text = "".join(c for c in text if not unicodedata.combining(c))
     text = text.replace("’", "'").replace("‘", "'")
     text = HYPHENS.sub("-", text)
-    return re.sub(r"\s+", " ", text).strip().casefold()
+    text = re.sub(r"\s+", " ", text).strip().casefold()
+    return text.translate(GREEK)
 
 
 def local_id(mention: str) -> str:
@@ -50,8 +60,10 @@ class Lexicon:
     def resolve(self, mention: str, category: str | None = None) -> Resolution:
         """Map a mention. With a category, only entities of that category can match."""
         matches = self._entries.get(normal_form(mention), set())
-        if category and category != "unclassified":
-            typed = {m for m in matches if m[2] == category}
+        # A biomarker is a role, so the concept itself can be of any category.
+        if category and category not in ("unclassified", "biomarker"):
+            allowed = COMPATIBLE.get(category, {category})
+            typed = {m for m in matches if m[2] in allowed}
             if matches and not typed:
                 return Resolution(local_id(mention), mention, category, False, "other_category")
             matches = typed

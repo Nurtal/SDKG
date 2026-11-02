@@ -200,6 +200,7 @@ enums:
       biomarker: {description: Not a Biolink category. A role of another entity in many cases.}
       autoantibody: {description: No specific Biolink category.}
       drug: {exact_mappings: [biolink:Drug]}
+      chemical: {exact_mappings: [biolink:ChemicalEntity]}
       clinical_trial: {exact_mappings: [biolink:ClinicalTrial]}
       clinical_endpoint: {exact_mappings: [biolink:ClinicalAttribute]}
       patient_population: {exact_mappings: [biolink:PopulationOfIndividualOrganisms]}

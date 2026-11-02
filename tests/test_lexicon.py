@@ -16,7 +16,7 @@ SOURCES = [
     {"source": "mondo", "adapter": "obo", "path": "mondo.json", "prefix": "MONDO", "category": "disease", "group": "disease", "xrefs": True},
     {"source": "hpo", "adapter": "obo", "path": "hp.json", "prefix": "HP", "category": "phenotype", "group": "phenotype"},
     {"source": "chembl", "adapter": "chembl_molecules", "path": "chembl_molecules.json", "group": "drug"},
-    {"source": "chebi", "adapter": "obo", "path": "chebi.json", "prefix": "CHEBI", "category": "drug", "group": "drug"},
+    {"source": "chebi", "adapter": "obo", "path": "chebi.json", "prefix": "CHEBI", "category": "chemical", "group": "drug"},
     {"source": "chembl", "adapter": "chembl_targets", "path": "chembl_targets.json", "group": "gene"},
 ]
 
