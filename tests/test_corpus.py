@@ -4,6 +4,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+
 import sdkg
 from sdkg.cli import main
 from sdkg.extraction import read_jsonl
@@ -36,7 +38,7 @@ def test_query_date_and_counts_are_saved_with_the_corpus(workspace):
     assert info["source"] == "pubmed"
     assert info["counts"] == {
         "retrieved": 8, "primary": 3, "leads_only": 1, "case_reports": 1,
-        "sjogren_larsson": 2, "other_disease": 0, "no_abstract": 1,
+        "sjogren_larsson": 2, "other_disease": 0, "no_abstract": 1, "books": 0,
     }
 
 
@@ -199,3 +201,87 @@ def test_test_sample_excludes_the_development_set(workspace):
     assert development not in sampled
     assert sampled == set(evaluation)
     assert sdkg.load(release).metadata["development_documents"] == 1
+
+
+def test_date_windows_cover_the_whole_period_with_no_overlap_and_stay_under_the_limit():
+    from datetime import date, timedelta
+
+    from sdkg.corpus import date_windows
+
+    # One synthetic record per day. PubMed's date ranges include both ends.
+    def count(start: date, end: date) -> int:
+        return (end - start).days + 1
+
+    windows = date_windows(count, date(2000, 1, 1), date(2003, 12, 31), limit=100)
+
+    assert windows[0][0] == date(2000, 1, 1) and windows[-1][1] == date(2003, 12, 31)
+    assert all(count(a, b) <= 100 for a, b in windows)
+    assert all(b + timedelta(days=1) == c for (_, b), (c, _) in zip(windows, windows[1:]))
+    assert sum(count(a, b) for a, b in windows) == count(date(2000, 1, 1), date(2003, 12, 31))
+
+
+def test_a_single_day_over_the_limit_is_an_error_instead_of_a_silent_loss():
+    from datetime import date
+
+    from sdkg.corpus import date_windows
+
+    with pytest.raises(ValueError, match="2000-01-01"):
+        date_windows(lambda a, b: 500, date(2000, 1, 1), date(2000, 1, 1), limit=100)
+
+
+def test_freezing_fails_if_fewer_records_arrive_than_pubmed_reported():
+    from sdkg.corpus import check_complete
+
+    check_complete(reported=10, received=10)
+    with pytest.raises(ValueError, match="10.*9"):
+        check_complete(reported=10, received=9)
+
+
+def test_a_rejected_page_is_retried_with_a_fresh_pubmed_session():
+    import urllib.error
+
+    from sdkg.corpus import fetch_page
+
+    sessions, asked = ["session0"], []
+
+    def search():
+        sessions.append(f"session{len(sessions)}")
+        return {"webenv": sessions[-1], "querykey": "1"}
+
+    def get(url):
+        asked.append(url)
+        if "session0" in url:
+            raise urllib.error.HTTPError(url, 400, "Bad Request", {}, None)
+        return b"<xml/>"
+
+    assert fetch_page(search, {"webenv": "session0", "querykey": "1"}, 200, 200, get=get, pause=0)[0] == b"<xml/>"
+    assert len(asked) == 2 and sessions == ["session0", "session1"]
+
+
+def test_a_page_that_keeps_failing_reports_where_it_failed():
+    import urllib.error
+
+    from sdkg.corpus import fetch_page
+
+    def get(url):
+        raise urllib.error.HTTPError(url, 400, "Bad Request", {}, None)
+
+    with pytest.raises(ValueError, match="offset 400"):
+        fetch_page(lambda: {"webenv": "s", "querykey": "1"}, {"webenv": "s", "querykey": "1"}, 400, 200, get=get, pause=0)
+
+
+def test_book_records_are_counted_and_excluded(workspace):
+    xml = workspace / "books.xml"
+    xml.write_text(
+        "<PubmedArticleSet>"
+        "<PubmedBookArticle><BookDocument><PMID>9100001</PMID><Book><BookTitle>Synthetic book</BookTitle></Book>"
+        "<Abstract><AbstractText>Synthetic chapter on Sjögren's disease.</AbstractText></Abstract></BookDocument></PubmedBookArticle>"
+        "</PubmedArticleSet>", "utf-8")
+    out = workspace / "books"
+
+    assert main(["corpus", "--query-file", str(REPO / "corpus/query.txt"), "--frozen-on", "2026-11-02",
+                 "--from-xml", str(xml), "--development", "0", "--seed", "1", "--out", str(out)]) == 0
+
+    assert json.loads((out / "corpus.json").read_text("utf-8"))["counts"]["books"] == 1
+    assert read_jsonl(out / "excluded.jsonl") == [{"doc_id": "9100001", "reason": "book"}]
+    assert read_jsonl(out / "documents.jsonl") == []
