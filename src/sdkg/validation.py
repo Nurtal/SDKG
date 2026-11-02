@@ -144,7 +144,7 @@ def cohens_kappa(pairs: list[tuple[bool, bool]]) -> float | None:
 
 
 def _read(path: str | Path) -> list[dict[str, Any]]:
-    return [json.loads(l) for l in Path(path).read_text("utf-8").splitlines() if l.strip()]
+    return [json.loads(l) for l in Path(path).read_text("utf-8").split("\n") if l.strip()]
 
 
 def evaluate(
