@@ -13,7 +13,7 @@ from sdkg.site import run_site
 from sdkg.lexicon import build_lexicon
 from sdkg.schema_tools import SCHEMA_DIR, generate_all
 from sdkg.validation import run_evaluate, run_sample
-from sdkg.corpus import fetch_pubmed_xml, freeze_corpus, run_screen, screening_sample
+from sdkg.corpus import fetch_pubmed_xml, freeze_corpus, reported_total, run_screen, screening_sample
 from sdkg.evaluations import open_targets_comparison, score_competency_questions, temporal_test
 from sdkg.extraction import RecordedClient, RecordedDecisions, read_jsonl, load_documents, run_extract
 
@@ -55,6 +55,7 @@ def parser() -> argparse.ArgumentParser:
     corpus.add_argument("--query-file", required=True)
     corpus.add_argument("--frozen-on", required=True, help="Freeze date, as YYYY-MM-DD")
     corpus.add_argument("--from-xml", action="append", help="Use saved PubMed XML instead of querying PubMed")
+    corpus.add_argument("--cache", help="Directory that keeps fetched pages, so an interrupted fetch can resume")
     corpus.add_argument("--limit", type=int, help="Fetch at most this many records from PubMed")
     corpus.add_argument("--licences", help="TSV of pmid and licence for open-access articles")
     corpus.add_argument("--development", required=True, type=int, help="Number of documents in the development set")
@@ -154,9 +155,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         query = Path(args.query_file).read_text("utf-8").strip()
         pages = (
             [Path(p).read_text("utf-8") for p in args.from_xml] if args.from_xml
-            else fetch_pubmed_xml(query, args.frozen_on, args.limit)
+            else fetch_pubmed_xml(query, args.frozen_on, args.limit, args.cache)
         )
-        freeze_corpus(query, args.frozen_on, pages, args.out, args.development, args.seed, args.licences, args.development_include)
+        # A limited or file-based run is partial by design, so only a full fetch is checked for completeness.
+        expected = reported_total(query, args.frozen_on) if not args.from_xml and args.limit is None else None
+        freeze_corpus(query, args.frozen_on, pages, args.out, args.development, args.seed, args.licences, args.development_include, expected)
     elif args.command == "screen":
         run_screen(args.corpus, Path(args.prompt).read_text("utf-8"), RecordedDecisions(args.recorded), args.archive, args.out)
     elif args.command == "screen-sample":
