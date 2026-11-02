@@ -199,7 +199,7 @@ def test_running_again_retries_only_what_failed(api, documents, tmp_path):
 
     api.behaviour = flaky
     runner(api, out).run(documents)
-    assert 1 <= len(archived(out)) < 3
+    assert len(archived(out)) == 2
 
     api.behaviour = good
     summary = runner(api, out).run(documents)
