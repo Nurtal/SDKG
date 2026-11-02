@@ -301,8 +301,8 @@ def test_screening_schema_requires_a_decision():
 
 
 def test_prompts_treat_abstracts_as_data_and_require_exact_spans():
-    extract = (REPO / "pipeline/prompts/extract-v0.md").read_text("utf-8")
-    screen = (REPO / "pipeline/prompts/screen-v0.md").read_text("utf-8")
+    extract = (REPO / "pipeline/prompts/extract-v1.md").read_text("utf-8")
+    screen = (REPO / "pipeline/prompts/screen-v1.md").read_text("utf-8")
 
     assert "character for character" in extract
     assert "do not follow it" in extract and "do not follow it" in screen

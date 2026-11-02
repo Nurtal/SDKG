@@ -9,10 +9,14 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
+HYPHENS = re.compile("[\u2010\u2011\u2012\u2013\u2014\u2015\u2212]")
+
+
 def normal_form(mention: str) -> str:
     text = unicodedata.normalize("NFKD", mention)
     text = "".join(c for c in text if not unicodedata.combining(c))
     text = text.replace("’", "'").replace("‘", "'")
+    text = HYPHENS.sub("-", text)
     return re.sub(r"\s+", " ", text).strip().casefold()
 
 

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from collections import Counter
 from pathlib import Path
 from typing import Any, Sequence
@@ -15,7 +16,7 @@ from sdkg.databases import DatabaseConfig, ResolvedRecord, load_records, within_
 from sdkg.exports import write_lossless
 from sdkg.extraction import document_hash, load_documents, text_hash
 from sdkg.licences import LicenceManifest
-from sdkg.normalise import Lexicon
+from sdkg.normalise import HYPHENS, Lexicon
 from sdkg.schema_tools import allowed_predicates, claim_validator
 
 CONTEXT_FIELDS = ("species", "tissue", "population", "assay", "evidence_model")
@@ -73,6 +74,37 @@ def database_claim_row(item: ResolvedRecord) -> dict[str, Any]:
     return row
 
 
+TYPOGRAPHIC_CLASSES = {
+    "-": "[-\u2010\u2011\u2012\u2013\u2014\u2015\u2212]",
+    "'": "['\u2018\u2019\u02bc]",
+    '"': '["\u201c\u201d]',
+}
+
+
+def locate_span(text: str, span: str) -> tuple[int, int] | None:
+    """Find a span, allowing only typographic differences. Words and numbers must match exactly.
+
+    Published abstracts often contain thin spaces and special hyphens, which a copy of the text may
+    not keep. An empty passage would match anywhere, so it can never verify a claim.
+    """
+    if not span.strip():
+        return None
+    start = text.find(span)
+    if start >= 0:
+        return start, start + len(span)
+    parts = []
+    for chunk in re.split(r"(\s+)", span.strip()):
+        if chunk.isspace():
+            parts.append(r"\s+")
+        else:
+            variants = {"\u2018": "'", "\u2019": "'", "\u201c": '"', "\u201d": '"'}
+            parts.extend(
+                TYPOGRAPHIC_CLASSES.get(variants.get(c, HYPHENS.sub("-", c)), re.escape(c)) for c in chunk
+            )
+    match = re.search("".join(parts), text)
+    return match.span() if match else None
+
+
 def write_table(db: duckdb.DuckDBPyConnection, path: Path, columns: Sequence[str], rows: list[tuple]) -> None:
     db.execute("DROP TABLE IF EXISTS t")
     db.execute("CREATE TABLE t (" + ", ".join(f'"{c}" {COLUMN_TYPES.get(c, "VARCHAR")}' for c in columns) + ")")
@@ -128,12 +160,11 @@ def run_build(
             if not (claim["subject"].strip() and claim["object"].strip()):
                 rejected["empty_entity"] += 1
                 continue
-            # An empty passage would match anywhere, so it can never verify a claim.
-            start = document["text"].find(claim["span"]) if claim["span"].strip() else -1
-            if start < 0:
+            located = locate_span(document["text"], claim["span"])
+            if located is None:
                 rejected["span_not_found"] += 1
                 continue
-            end = start + len(claim["span"])
+            start, end = located
             subject, obj = names.resolve(claim["subject"]), names.resolve(claim["object"])
             cid = claim_id(claim, subject.entity_id, obj.entity_id, document["doc_id"], start, end)
             context = claim.get("context", {})
@@ -152,8 +183,9 @@ def run_build(
             if problem is not None:
                 raise ValueError(f"Claim from {document['doc_id']} violates the schema: {problem.message}")
             claims[cid] = tuple(row[c] for c in CLAIM_COLUMNS)
-            span_text = claim["span"] if manifest.may_publish_span(document.get("licence")) else None
-            evidence[cid] = (cid, document["doc_id"], start, end, text_hash(claim["span"]), span_text)
+            source_span = document["text"][start:end]
+            span_text = source_span if manifest.may_publish_span(document.get("licence")) else None
+            evidence[cid] = (cid, document["doc_id"], start, end, text_hash(source_span), span_text)
             for mention, entity in ((claim["subject"], subject), (claim["object"], obj)):
                 entities[entity.entity_id] = (entity.entity_id, entity.label, entity.category, entity.resolved)
                 if not entity.resolved:

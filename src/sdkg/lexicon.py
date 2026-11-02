@@ -49,10 +49,11 @@ def read_obo(path: Path, entry: dict[str, Any], known: dict[str, list[Entry]]) -
             if node.get("type") != "CLASS" or marker not in node["id"] or meta.get("deprecated") or not label:
                 continue
             entity_id = f"{prefix}:{node['id'].split(marker)[1]}"
-            yield Entry(label, entity_id, label, entry["category"])
-            for synonym in meta.get("synonyms") or []:
-                if synonym.get("pred") == "hasExactSynonym":
-                    yield Entry(synonym["val"], entity_id, label, entry["category"])
+            names = [label] + [s["val"] for s in meta.get("synonyms") or [] if s.get("pred") == "hasExactSynonym"]
+            for name in names:
+                yield Entry(name, entity_id, label, entry["category"])
+                if entry.get("plurals") and not name.endswith("s"):
+                    yield Entry(name + "s", entity_id, label, entry["category"])
             if entry.get("xrefs"):
                 for xref in meta.get("xrefs") or []:
                     scheme, _, local = xref.get("val", "").partition(":")

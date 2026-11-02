@@ -6,3 +6,14 @@ primary Sjögren's disease	MONDO:0010030	Sjogren syndrome	disease
 primary Sjögren's syndrome	MONDO:0010030	Sjogren syndrome	disease
 pSS	MONDO:0010030	Sjogren syndrome	disease
 pSjD	MONDO:0010030	Sjogren syndrome	disease
+ESSDAI	sdkg:essdai	ESSDAI	clinical_endpoint
+EULAR Sjögren's Syndrome Disease Activity Index	sdkg:essdai	ESSDAI	clinical_endpoint
+ClinESSDAI	sdkg:clinessdai	ClinESSDAI	clinical_endpoint
+ESSPRI	sdkg:esspri	ESSPRI	clinical_endpoint
+EULAR Sjögren's Syndrome Patient Reported Index	sdkg:esspri	ESSPRI	clinical_endpoint
+anti-SSA	sdkg:anti_ssa_ro	anti-SSA/Ro antibody	autoantibody
+anti-Ro	sdkg:anti_ssa_ro	anti-SSA/Ro antibody	autoantibody
+anti-SSA/Ro	sdkg:anti_ssa_ro	anti-SSA/Ro antibody	autoantibody
+anti-SSB	sdkg:anti_ssb_la	anti-SSB/La antibody	autoantibody
+anti-La	sdkg:anti_ssb_la	anti-SSB/La antibody	autoantibody
+anti-SSB/La	sdkg:anti_ssb_la	anti-SSB/La antibody	autoantibody
