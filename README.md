@@ -2,7 +2,7 @@
 
 An open, evidence-linked knowledge graph of Sjögren's disease (SjD), built for computational use.
 
-**Status: pipeline in development.** The tools run on a small synthetic sample. No real extraction has been run, the graph contains no real data yet, and no quality figures exist. The schema is a proposal awaiting expert validation.
+**Status: pipeline in development.** The tools run on a small synthetic sample. No real extraction has been run, the graph contains no real data yet, and no quality figures exist. The schema is provisional and has not been validated by an expert (ADR-0012).
 
 ## Summary
 

@@ -34,7 +34,7 @@ class FakeApi:
 
     def __init__(self):
         self.submitted: list[dict] = []
-        self.behaviour = lambda doc_text: {"type": "succeeded", "message": message(json.dumps({"claims": [{**make_claim(span=doc_text[:20]), "directed": None, "direct": None, "biomarker_role": None}]}))}
+        self.behaviour = lambda doc_text: {"type": "succeeded", "message": message(json.dumps({"claims": [{**make_claim(span=doc_text[:20]), "directed": None, "direct": None, "biomarker_role": None, "sjd_context": True, "trial_id": None}]}))}
         self.server = None
         self.polls_until_done = 1
         self.fail_after_submit = False
@@ -284,7 +284,7 @@ def test_output_schema_accepts_a_full_claim_and_rejects_invented_values():
     schema = extraction_output_schema()
     good = {
         "subject": "IRF5", "predicate": "regulates", "object": "x", "span": "y", "sign": None, "negated": False,
-        "directed": None, "direct": None, "biomarker_role": None,
+        "directed": None, "direct": None, "biomarker_role": None, "sjd_context": True, "trial_id": None,
         "context": {"species": None, "tissue": None, "population": None, "assay": None, "evidence_model": "human"},
     }
     jsonschema.validate({"claims": [good]}, schema)
@@ -301,7 +301,7 @@ def test_screening_schema_requires_a_decision():
 
 
 def test_prompts_treat_abstracts_as_data_and_require_exact_spans():
-    extract = (REPO / "pipeline/prompts/extract-v1.md").read_text("utf-8")
+    extract = (REPO / "pipeline/prompts/extract-v2.md").read_text("utf-8")
     screen = (REPO / "pipeline/prompts/screen-v1.md").read_text("utf-8")
 
     assert "character for character" in extract

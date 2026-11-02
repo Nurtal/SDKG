@@ -39,7 +39,8 @@ def extraction_output_schema() -> dict[str, Any]:
         "subject": {"type": "string"}, "predicate": _enum("Predicate", nullable=False),
         "object": {"type": "string"}, "span": {"type": "string"}, "sign": _enum("Sign"),
         "negated": {"type": "boolean"}, "directed": nullable_bool, "direct": nullable_bool,
-        "biomarker_role": _enum("BiomarkerRole"),
+        "biomarker_role": _enum("BiomarkerRole"), "sjd_context": {"type": "boolean"},
+        "trial_id": nullable_text,
         "context": {"type": "object", "properties": context, "required": list(context), "additionalProperties": False},
     }
     return {

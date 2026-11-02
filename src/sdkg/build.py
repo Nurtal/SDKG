@@ -24,7 +24,7 @@ CLAIM_COLUMNS = (
     "claim_id", "subject", "predicate", "object", "sign", "negated", "directed", "direct",
     *CONTEXT_FIELDS, "biomarker_role", "layer", "claim_status", "evidence_level",
     "extraction_reliability", "source", "source_version", "source_record",
-    "trial_phase", "trial_status", "endpoint",
+    "trial_id", "trial_phase", "trial_status", "endpoint",
 )
 COLUMN_TYPES = {
     "span_start": "INTEGER", "span_end": "INTEGER", "negated": "BOOLEAN", "directed": "BOOLEAN",
@@ -68,7 +68,7 @@ def database_claim_row(item: ResolvedRecord) -> dict[str, Any]:
         "direct": None, **{k: None for k in CONTEXT_FIELDS}, "biomarker_role": None, "layer": item.layer,
         "claim_status": "curated_source", "evidence_level": "curated_database", "extraction_reliability": None,
         "source": item.source, "source_version": item.version, "source_record": record.record_id,
-        "trial_phase": None, "trial_status": None, "endpoint": None,
+        "trial_id": None, "trial_phase": None, "trial_status": None, "endpoint": None,
     }
     row.update(record.fields)
     return row
@@ -154,6 +154,9 @@ def run_build(
         for key, values in provenance.items():
             values.add(record[key])
         for claim in record["response"]["claims"]:
+            if claim.get("sjd_context") is False:
+                rejected["outside_sjd_context"] += 1
+                continue
             if claim["predicate"] not in predicates:
                 rejected["predicate_not_allowed"] += 1
                 continue
@@ -177,7 +180,9 @@ def run_build(
                 "claim_status": "ai_extracted", "evidence_level": evidence_level(document, context.get("evidence_model")),
                 "extraction_reliability": None,
                 "source": corpus_info["source"], "source_version": corpus_info.get("frozen_on"),
-                "source_record": document["doc_id"], "trial_phase": None, "trial_status": None, "endpoint": None,
+                "source_record": document["doc_id"],
+                "trial_id": claim["trial_id"] if claim.get("trial_id") and claim["trial_id"] in document["text"] else None,
+                "trial_phase": None, "trial_status": None, "endpoint": None,
             }
             problem = next(validator.iter_errors(row), None)
             if problem is not None:
