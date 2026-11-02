@@ -8,7 +8,7 @@ An open, evidence-linked knowledge graph of Sjögren's disease (SjD), built for 
 
 SDKG will integrate molecular mechanisms, cellular processes, clinical manifestations, biomarkers and therapeutic targets into one graph. It will draw on curated public databases, biomedical ontologies and the scientific literature.
 
-Every relationship is stored as a claim linked to its source, evidence and context. Most literature claims will be extracted by an LLM. Their quality will be estimated by human review of a random sample, not assumed from full curation.
+Every relationship is stored as a claim linked to its source, evidence and context. Literature claims are extracted by Claude in working sessions. Their quality will be estimated by human review of a random sample, not assumed from full curation.
 
 The graph is intended to support network analysis, graph machine learning, and the generation and prioritisation of hypotheses. It does not validate those hypotheses and contains no patient-level data.
 
@@ -57,7 +57,7 @@ Extraction quality follows the protocol in [ADR-0004](docs/adr/0004-llm-extracti
 - **Stack:** Python and DuckDB, with a single-command rebuild from archived LLM outputs.
 - **Repository:** code, schema, prompts, manifests and a small sample graph. Full exports and raw LLM outputs go to Zenodo, subject to the legal review.
 - **CI:** tests, validation and site publishing on the sample graph, with no LLM calls.
-- **Extraction runs:** session-based prototyping, then the batch API with `claude-opus-5-5` and structured output for production.
+- **Extraction runs:** in Claude Code sessions, archived with `sdkg import-session` (ADR-0013).
 - **Normalisation:** the LLM proposes a mention and a deterministic tool maps it to an identifier. Concepts missing from ontologies use a local `sdkg:` namespace, and the unresolved-entity rate is published.
 - **Releases:** dated with a Zenodo DOI, stable claim IDs derived from normalised content, and a report of differences. The target is one release a year after v1.
 - **Updates:** only new PMIDs are extracted. A full re-extraction means a new major version.
@@ -78,7 +78,6 @@ The internal target date will be set after step 3.
 
 - [ ] Domain expert identified, with 1–2 days a month available
 - [ ] Second human reviewer recruited (required before paper submission)
-- [ ] Claude API key and budget
 - [ ] Licence review of quoted abstract passages and archived raw LLM outputs
 - [ ] Source licences confirmed in a manifest
 
@@ -109,7 +108,7 @@ graph.subgraph(["HGNC:6120"], hops=2)
 graph.paths("HGNC:6120", "MONDO:0010030")   # Reports any background-layer steps
 ```
 
-Run `sdkg --help` for every command. A `--max-spend-usd` option calls the paid API, and it is the only way the pipeline spends money.
+Run `sdkg --help` for every command. No command calls a paid API (ADR-0013).
 
 ## Documentation
 

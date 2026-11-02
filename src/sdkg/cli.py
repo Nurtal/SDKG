@@ -6,14 +6,14 @@ import json
 from pathlib import Path
 from typing import Sequence
 
-from sdkg.batch import BatchRunner, extraction_output_schema, screening_output_schema
 from sdkg.build import run_build
 from sdkg.hydrate import hydrate
+from sdkg.session import import_session, next_batch
 from sdkg.site import run_site
 from sdkg.lexicon import build_lexicon
 from sdkg.schema_tools import SCHEMA_DIR, generate_all
 from sdkg.validation import run_evaluate, run_sample
-from sdkg.corpus import apply_screening, fetch_pubmed_xml, freeze_corpus, run_screen, screening_sample
+from sdkg.corpus import fetch_pubmed_xml, freeze_corpus, run_screen, screening_sample
 from sdkg.evaluations import open_targets_comparison, score_competency_questions, temporal_test
 from sdkg.extraction import RecordedClient, RecordedDecisions, read_jsonl, load_documents, run_extract
 
@@ -26,11 +26,7 @@ def parser() -> argparse.ArgumentParser:
     extract.add_argument("--corpus", required=True)
     extract.add_argument("--prompt", required=True)
     extract.add_argument("--schema", required=True)
-    mode = extract.add_mutually_exclusive_group(required=True)
-    mode.add_argument("--recorded", help="Saved responses to replay instead of calling an LLM")
-    mode.add_argument("--max-spend-usd", type=float, help="PAID: call the Message Batches API, up to this spending limit")
-    extract.add_argument("--effort", default="medium", choices=["low", "medium", "high", "xhigh", "max"])
-    extract.add_argument("--max-tokens", type=int, default=8000)
+    extract.add_argument("--recorded", required=True, help="Saved responses to replay")
     extract.add_argument("--out", required=True)
 
     build = commands.add_parser("build", help="Build a release from archived outputs")
@@ -69,10 +65,7 @@ def parser() -> argparse.ArgumentParser:
     screen = commands.add_parser("screen", help="Apply relevance screening to a frozen corpus")
     screen.add_argument("--corpus", required=True)
     screen.add_argument("--prompt", required=True)
-    screen_mode = screen.add_mutually_exclusive_group(required=True)
-    screen_mode.add_argument("--recorded", help="Saved decisions to replay instead of calling an LLM")
-    screen_mode.add_argument("--max-spend-usd", type=float, help="PAID: call the Message Batches API, up to this spending limit")
-    screen.add_argument("--effort", default="low", choices=["low", "medium", "high", "xhigh", "max"])
+    screen.add_argument("--recorded", required=True, help="Saved decisions to replay")
     screen.add_argument("--archive", required=True)
     screen.add_argument("--out", required=True)
 
@@ -87,6 +80,20 @@ def parser() -> argparse.ArgumentParser:
     lexicon.add_argument("--licences", required=True)
     lexicon.add_argument("--out", required=True)
     lexicon.add_argument("--allow-unconfirmed", action="store_true", help="Private use only: the report is marked not publishable")
+
+    batch = commands.add_parser("next-batch", help="Write the next documents to read in a session")
+    batch.add_argument("--corpus", required=True)
+    batch.add_argument("--archive", required=True)
+    batch.add_argument("--size", required=True, type=int)
+    batch.add_argument("--seed", required=True, type=int)
+    batch.add_argument("--split", choices=["development", "evaluation"])
+    batch.add_argument("--out", required=True)
+
+    session = commands.add_parser("import-session", help="Archive claims extracted in a session, with no paid API")
+    session.add_argument("--corpus", required=True)
+    session.add_argument("--responses", required=True)
+    session.add_argument("--prompt", required=True)
+    session.add_argument("--archive", required=True)
 
     site = commands.add_parser("site", help="Generate the static website from a release")
     site.add_argument("--release", required=True)
@@ -133,20 +140,7 @@ def parser() -> argparse.ArgumentParser:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = parser().parse_args(argv)
-    if args.command == "extract" and args.max_spend_usd is not None:
-        import anthropic
-
-        summary = BatchRunner(
-            client=anthropic.Anthropic(),
-            prompt=Path(args.prompt).read_text("utf-8"),
-            schema=extraction_output_schema(),
-            out=args.out,
-            max_spend_usd=args.max_spend_usd,
-            effort=args.effort,
-            max_tokens=args.max_tokens,
-        ).run(load_documents(args.corpus))
-        print(json.dumps(summary, indent=2, sort_keys=True))
-    elif args.command == "extract":
+    if args.command == "extract":
         run_extract(
             load_documents(args.corpus),
             Path(args.prompt).read_text("utf-8"),
@@ -163,26 +157,17 @@ def main(argv: Sequence[str] | None = None) -> int:
             else fetch_pubmed_xml(query, args.frozen_on, args.limit)
         )
         freeze_corpus(query, args.frozen_on, pages, args.out, args.development, args.seed, args.licences, args.development_include)
-    elif args.command == "screen" and args.max_spend_usd is not None:
-        import anthropic
-
-        summary = BatchRunner(
-            client=anthropic.Anthropic(),
-            prompt=Path(args.prompt).read_text("utf-8"),
-            schema=screening_output_schema(),
-            out=args.archive,
-            max_spend_usd=args.max_spend_usd,
-            effort=args.effort,
-            max_tokens=2000,
-        ).run(load_documents(args.corpus))
-        print(json.dumps(summary, indent=2, sort_keys=True))
-        apply_screening(args.corpus, args.archive, args.out)
     elif args.command == "screen":
         run_screen(args.corpus, Path(args.prompt).read_text("utf-8"), RecordedDecisions(args.recorded), args.archive, args.out)
     elif args.command == "screen-sample":
         screening_sample(args.screened, args.seed, args.size, args.out)
     elif args.command == "lexicon":
         build_lexicon(args.config, args.licences, args.out, args.allow_unconfirmed)
+    elif args.command == "next-batch":
+        remaining = next_batch(args.corpus, args.archive, args.size, args.seed, args.out, args.split)
+        print(f"{remaining} documents remain before this batch")
+    elif args.command == "import-session":
+        print(f"{import_session(args.corpus, args.responses, Path(args.prompt).read_text('utf-8'), args.archive)} documents archived")
     elif args.command == "site":
         run_site(args.release, args.out, args.data_notice, args.downloads_url)
     elif args.command == "temporal-test":
