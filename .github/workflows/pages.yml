@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   deploy:
+    # Set the SITE_ENABLED repository variable to "true" once GitHub Pages is switched on.
+    if: vars.SITE_ENABLED == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
