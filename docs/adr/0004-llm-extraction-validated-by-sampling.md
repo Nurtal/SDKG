@@ -1,5 +1,7 @@
 # Extract with an LLM and validate by sampling, not full curation
 
+**Extraction now happens in Claude Code sessions, without a paid API. See [ADR-0013](0013-extract-in-session-without-a-paid-api.md).**
+
 Reviewing every claim is not feasible with the available expert time, so v1 literature claims are extracted by `claude-opus-5-5` and quality is estimated on a human-reviewed random sample. The graph must therefore be described as "AI-extracted, with an estimated precision of X%", not as curated. Full curation may follow if resources allow.
 
 Sampling is only defensible under these rules:
