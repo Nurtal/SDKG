@@ -1,14 +1,91 @@
 {
   "curated": "curated.tsv",
   "sources": [
-    {"source": "hgnc", "adapter": "hgnc", "path": "hgnc_complete_set.txt", "group": "gene", "version": "FILL IN", "sha256": "FILL IN"},
-    {"source": "chembl", "adapter": "chembl_targets", "path": "chembl_targets.json", "group": "gene", "version": "FILL IN", "sha256": "FILL IN"},
-    {"source": "mondo", "adapter": "obo", "path": "mondo.json", "prefix": "MONDO", "category": "disease", "group": "disease", "xrefs": true, "version": "FILL IN", "sha256": "FILL IN"},
-    {"source": "hpo", "adapter": "obo", "path": "hp.json", "prefix": "HP", "category": "phenotype", "group": "phenotype", "version": "FILL IN", "sha256": "FILL IN"},
-    {"source": "go", "adapter": "obo", "path": "go.json", "prefix": "GO", "category": "pathway_or_process", "group": "process", "version": "FILL IN", "sha256": "FILL IN"},
-    {"source": "cl", "adapter": "obo", "path": "cl.json", "prefix": "CL", "category": "cell_type", "group": "cell", "version": "FILL IN", "sha256": "FILL IN"},
-    {"source": "uberon", "adapter": "obo", "path": "uberon.json", "prefix": "UBERON", "category": "tissue_or_anatomy", "group": "anatomy", "version": "FILL IN", "sha256": "FILL IN"},
-    {"source": "chembl", "adapter": "chembl_molecules", "path": "chembl_molecules.json", "group": "drug", "version": "FILL IN", "sha256": "FILL IN"},
-    {"source": "chebi", "adapter": "obo", "path": "chebi.json", "prefix": "CHEBI", "category": "drug", "group": "drug", "version": "FILL IN", "sha256": "FILL IN"}
+    {
+      "source": "hgnc",
+      "adapter": "hgnc",
+      "path": "hgnc_complete_set.txt",
+      "group": "gene",
+      "version": "FILL IN",
+      "sha256": "FILL IN"
+    },
+    {
+      "source": "chembl",
+      "adapter": "chembl_targets",
+      "path": "chembl_targets.json",
+      "group": "gene",
+      "version": "FILL IN",
+      "sha256": "FILL IN"
+    },
+    {
+      "source": "mondo",
+      "adapter": "obo",
+      "path": "mondo.json",
+      "prefix": "MONDO",
+      "category": "disease",
+      "group": "clinical",
+      "xrefs": true,
+      "version": "FILL IN",
+      "sha256": "FILL IN"
+    },
+    {
+      "source": "hpo",
+      "adapter": "obo",
+      "path": "hp.json",
+      "prefix": "HP",
+      "category": "phenotype",
+      "group": "clinical",
+      "version": "FILL IN",
+      "sha256": "FILL IN"
+    },
+    {
+      "source": "go",
+      "adapter": "obo",
+      "path": "go.json",
+      "prefix": "GO",
+      "category": "pathway_or_process",
+      "group": "process",
+      "version": "FILL IN",
+      "sha256": "FILL IN"
+    },
+    {
+      "source": "cl",
+      "adapter": "obo",
+      "path": "cl.json",
+      "prefix": "CL",
+      "category": "cell_type",
+      "group": "cell",
+      "version": "FILL IN",
+      "sha256": "FILL IN",
+      "plurals": true
+    },
+    {
+      "source": "uberon",
+      "adapter": "obo",
+      "path": "uberon.json",
+      "prefix": "UBERON",
+      "category": "tissue_or_anatomy",
+      "group": "anatomy",
+      "version": "FILL IN",
+      "sha256": "FILL IN"
+    },
+    {
+      "source": "chembl",
+      "adapter": "chembl_molecules",
+      "path": "chembl_molecules.json",
+      "group": "drug",
+      "version": "FILL IN",
+      "sha256": "FILL IN"
+    },
+    {
+      "source": "chebi",
+      "adapter": "obo",
+      "path": "chebi.json",
+      "prefix": "CHEBI",
+      "category": "drug",
+      "group": "drug",
+      "version": "FILL IN",
+      "sha256": "FILL IN"
+    }
   ]
 }

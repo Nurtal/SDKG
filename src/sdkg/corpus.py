@@ -118,6 +118,7 @@ def freeze_corpus(
     development: int,
     seed: int,
     licences: str | Path | None = None,
+    development_include: str | Path | None = None,
 ) -> None:
     open_licences = _read_licences(licences)
     records: dict[str, tuple[dict[str, Any], str]] = {}
@@ -142,7 +143,11 @@ def freeze_corpus(
         else:
             excluded.append({"doc_id": doc_id, "reason": kind})
 
-    held = set(sorted((d["doc_id"] for d in documents), key=lambda k: _rank(seed, k))[:development])
+    # Documents already used for prompt work can never enter the test sample.
+    known = {d["doc_id"] for d in documents}
+    forced = set(Path(development_include).read_text("utf-8").split()) & known if development_include else set()
+    others = sorted(known - forced, key=lambda k: _rank(seed, k))
+    held = forced | set(others[: max(0, development - len(forced))])
     for row in documents:
         row["split"] = "development" if row["doc_id"] in held else "evaluation"
 

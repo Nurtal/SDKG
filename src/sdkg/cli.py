@@ -62,6 +62,7 @@ def parser() -> argparse.ArgumentParser:
     corpus.add_argument("--limit", type=int, help="Fetch at most this many records from PubMed")
     corpus.add_argument("--licences", help="TSV of pmid and licence for open-access articles")
     corpus.add_argument("--development", required=True, type=int, help="Number of documents in the development set")
+    corpus.add_argument("--development-include", help="File of PMIDs that must be in the development set")
     corpus.add_argument("--seed", required=True, type=int)
     corpus.add_argument("--out", required=True)
 
@@ -161,7 +162,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             [Path(p).read_text("utf-8") for p in args.from_xml] if args.from_xml
             else fetch_pubmed_xml(query, args.frozen_on, args.limit)
         )
-        freeze_corpus(query, args.frozen_on, pages, args.out, args.development, args.seed, args.licences)
+        freeze_corpus(query, args.frozen_on, pages, args.out, args.development, args.seed, args.licences, args.development_include)
     elif args.command == "screen" and args.max_spend_usd is not None:
         import anthropic
 
