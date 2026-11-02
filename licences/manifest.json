@@ -1,19 +1,75 @@
 {
   "publish_span_text": false,
   "sources": {
-    "pubmed": {"status": "unconfirmed", "terms_url": "https://www.nlm.nih.gov/databases/download/terms_and_conditions.html", "notes": "Abstracts may remain under publisher copyright. Awaiting legal review."},
-    "pmc-open-access": {"status": "unconfirmed", "terms_url": "https://pmc.ncbi.nlm.nih.gov/tools/openftlist/", "notes": "Licence varies per article."},
-    "uniprot": {"status": "unconfirmed", "terms_url": "https://www.uniprot.org/help/license"},
-    "reactome": {"status": "unconfirmed", "terms_url": "https://reactome.org/license"},
-    "chembl": {"status": "unconfirmed", "terms_url": "https://chembl.gitbook.io/chembl-interface-documentation/about"},
-    "hpo": {"status": "unconfirmed", "terms_url": "https://human-phenotype-ontology.github.io/license.html"},
-    "clinicaltrials-gov": {"status": "unconfirmed", "terms_url": "https://clinicaltrials.gov/about-site/terms-conditions"},
-    "open-targets": {"status": "unconfirmed", "terms_url": "https://platform-docs.opentargets.org/licence"},
-    "hgnc": {"status": "unconfirmed", "terms_url": "https://www.genenames.org/about/"},
-    "mondo": {"status": "unconfirmed", "terms_url": "https://obofoundry.org/ontology/mondo.html"},
-    "go": {"status": "unconfirmed", "terms_url": "https://geneontology.org/docs/go-citation-policy/"},
-    "cl": {"status": "unconfirmed", "terms_url": "https://obofoundry.org/ontology/cl.html"},
-    "uberon": {"status": "unconfirmed", "terms_url": "https://obofoundry.org/ontology/uberon.html"},
-    "chebi": {"status": "unconfirmed", "terms_url": "https://www.ebi.ac.uk/chebi/"}
+    "pubmed": {
+      "status": "unconfirmed",
+      "terms_url": "https://www.nlm.nih.gov/databases/download/terms_and_conditions.html",
+      "notes": "Abstracts may remain under publisher copyright. Awaiting legal review."
+    },
+    "pmc-open-access": {
+      "status": "unconfirmed",
+      "terms_url": "https://pmc.ncbi.nlm.nih.gov/tools/openftlist/",
+      "notes": "Licence varies per article."
+    },
+    "uniprot": {
+      "status": "unconfirmed",
+      "terms_url": "https://www.uniprot.org/help/license",
+      "notes": "Terms observed: CC BY 4.0."
+    },
+    "reactome": {
+      "status": "unconfirmed",
+      "terms_url": "https://reactome.org/license",
+      "notes": "Terms observed: data under CC0."
+    },
+    "chembl": {
+      "status": "unconfirmed",
+      "terms_url": "https://chembl.gitbook.io/chembl-interface-documentation/about",
+      "notes": "Terms observed: CC BY-SA 3.0. Likely conflict with a CC BY 4.0 release. See review-notes.md."
+    },
+    "hpo": {
+      "status": "unconfirmed",
+      "terms_url": "https://human-phenotype-ontology.github.io/license.html",
+      "notes": "Terms observed: custom HPO terms with conditions. See review-notes.md."
+    },
+    "clinicaltrials-gov": {
+      "status": "unconfirmed",
+      "terms_url": "https://clinicaltrials.gov/about-site/terms-conditions",
+      "notes": "Terms not yet read. See review-notes.md."
+    },
+    "open-targets": {
+      "status": "unconfirmed",
+      "terms_url": "https://platform-docs.opentargets.org/licence",
+      "notes": "Terms observed: data marked CC0 1.0."
+    },
+    "hgnc": {
+      "status": "unconfirmed",
+      "terms_url": "https://www.genenames.org/about/",
+      "notes": "Terms observed: free to use, with a request to reference HGNC."
+    },
+    "mondo": {
+      "status": "unconfirmed",
+      "terms_url": "https://obofoundry.org/ontology/mondo.html",
+      "notes": "OBO Foundry registry: CC BY 4.0."
+    },
+    "go": {
+      "status": "unconfirmed",
+      "terms_url": "https://geneontology.org/docs/go-citation-policy/",
+      "notes": "Terms observed: CC BY 4.0."
+    },
+    "cl": {
+      "status": "unconfirmed",
+      "terms_url": "https://obofoundry.org/ontology/cl.html",
+      "notes": "OBO Foundry registry: CC BY 4.0."
+    },
+    "uberon": {
+      "status": "unconfirmed",
+      "terms_url": "https://obofoundry.org/ontology/uberon.html",
+      "notes": "OBO Foundry registry: CC BY 3.0."
+    },
+    "chebi": {
+      "status": "unconfirmed",
+      "terms_url": "https://www.ebi.ac.uk/chebi/",
+      "notes": "OBO Foundry registry: CC BY 4.0."
+    }
   }
 }
