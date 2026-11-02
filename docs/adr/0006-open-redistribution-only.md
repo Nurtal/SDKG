@@ -4,4 +4,4 @@ The data is to be released under CC BY 4.0, and it is much cheaper to enforce th
 
 Abstracts often remain under copyright, so evidence span text is published only for articles under an open licence. For other articles we publish the PMID and text offsets, and users can retrieve the text with a provided script.
 
-**Status: pending legal review** of quoted passages and archived raw LLM outputs. Individual source licences have not yet been confirmed.
+**Status: pending legal review** of quoted passages and archived raw LLM outputs. Individual source licences have not yet been confirmed. ChEMBL appears to be under CC BY-SA 3.0 and HPO under custom terms, and either may conflict with this decision. See `licences/review-notes.md`.
