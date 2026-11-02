@@ -1,0 +1,432 @@
+{
+  "$defs": {
+    "BiomarkerRole": {
+      "description": "Proposed as a claim property so that biomarker_for stays one predicate (CQ11).",
+      "enum": [
+        "diagnosis",
+        "activity",
+        "prognosis",
+        "treatment_response"
+      ],
+      "title": "BiomarkerRole",
+      "type": "string"
+    },
+    "Claim": {
+      "additionalProperties": false,
+      "description": "A statement that a source asserts a relationship between two entities in a context.",
+      "properties": {
+        "assay": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "biomarker_role": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BiomarkerRole"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "claim_id": {
+          "description": "The stable identifier of a claim, derived from its normalised content.",
+          "type": "string"
+        },
+        "claim_status": {
+          "$ref": "#/$defs/ClaimStatus"
+        },
+        "direct": {
+          "description": "Whether the source describes the relationship as direct.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "directed": {
+          "description": "Whether the source states a direction from subject to object.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "endpoint": {
+          "description": "The clinical endpoint a trial measured.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_level": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceLevel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_model": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "extraction_reliability": {
+          "description": "Estimated per predicate from the test sample. Empty until that review exists.",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "layer": {
+          "$ref": "#/$defs/Layer"
+        },
+        "negated": {
+          "description": "True for a null result. The source tested the relationship and did not find it.",
+          "type": "boolean"
+        },
+        "object": {
+          "type": "string"
+        },
+        "population": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "predicate": {
+          "$ref": "#/$defs/Predicate"
+        },
+        "sign": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Sign"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "type": "string"
+        },
+        "source_record": {
+          "description": "The record's identifier within its source.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_version": {
+          "description": "The version of a database snapshot.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "species": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "subject": {
+          "type": "string"
+        },
+        "tissue": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "trial_phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "trial_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "claim_id",
+        "subject",
+        "predicate",
+        "object",
+        "negated",
+        "layer",
+        "claim_status",
+        "source"
+      ],
+      "title": "Claim",
+      "type": "object"
+    },
+    "ClaimGroup": {
+      "additionalProperties": false,
+      "description": "Claims with the same normalised subject, predicate, object and context.",
+      "properties": {
+        "claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "group_id": {
+          "type": "string"
+        },
+        "negative_claims": {
+          "type": "integer"
+        },
+        "positive_claims": {
+          "type": "integer"
+        },
+        "support": {
+          "description": "The number of distinct publications. Not a count of independent sources.",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "group_id",
+        "support",
+        "positive_claims",
+        "negative_claims",
+        "claim_ids"
+      ],
+      "title": "ClaimGroup",
+      "type": "object"
+    },
+    "ClaimStatus": {
+      "description": "",
+      "enum": [
+        "curated_source",
+        "ai_extracted",
+        "human_reviewed"
+      ],
+      "title": "ClaimStatus",
+      "type": "string"
+    },
+    "Contradiction": {
+      "additionalProperties": false,
+      "description": "Two claims about the same subject and object, in compatible contexts, with opposite signs.",
+      "properties": {
+        "claim_id_a": {
+          "type": "string"
+        },
+        "claim_id_b": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "claim_id_a",
+        "claim_id_b"
+      ],
+      "title": "Contradiction",
+      "type": "object"
+    },
+    "Entity": {
+      "additionalProperties": false,
+      "description": "A concept that claims are about.",
+      "properties": {
+        "category": {
+          "$ref": "#/$defs/EntityCategory"
+        },
+        "entity_id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "resolved": {
+          "description": "False when the concept has no adequate ontology match and uses a local identifier.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "entity_id",
+        "label",
+        "category",
+        "resolved"
+      ],
+      "title": "Entity",
+      "type": "object"
+    },
+    "EntityCategory": {
+      "description": "",
+      "enum": [
+        "gene_or_protein",
+        "genetic_variant",
+        "pathway_or_process",
+        "cell_type",
+        "tissue_or_anatomy",
+        "phenotype",
+        "disease",
+        "biomarker",
+        "autoantibody",
+        "drug",
+        "clinical_trial",
+        "clinical_endpoint",
+        "patient_population",
+        "published_stratification",
+        "stratification_subgroup",
+        "assay",
+        "unclassified"
+      ],
+      "title": "EntityCategory",
+      "type": "string"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "description": "Where a claim's evidence span is. Its text is included only when licensing allows.",
+      "properties": {
+        "claim_id": {
+          "description": "The stable identifier of a claim, derived from its normalised content.",
+          "type": "string"
+        },
+        "pmid": {
+          "type": "string"
+        },
+        "span_end": {
+          "type": "integer"
+        },
+        "span_hash": {
+          "type": "string"
+        },
+        "span_start": {
+          "type": "integer"
+        },
+        "span_text": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "claim_id",
+        "pmid",
+        "span_start",
+        "span_end",
+        "span_hash"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "EvidenceLevel": {
+      "description": "PROPOSAL. Ordinal grade of study strength, for the expert to review.",
+      "enum": [
+        "randomised_trial",
+        "curated_database",
+        "human_genetic",
+        "human_observational",
+        "animal_or_in_vitro",
+        "unspecified"
+      ],
+      "title": "EvidenceLevel",
+      "type": "string"
+    },
+    "EvidenceModel": {
+      "description": "",
+      "enum": [
+        "human",
+        "secondary_sjd",
+        "animal",
+        "in_vitro"
+      ],
+      "title": "EvidenceModel",
+      "type": "string"
+    },
+    "HeldOutAssociation": {
+      "additionalProperties": false,
+      "description": "An Open Targets SjD association reserved for evaluation, kept out of the graph (ADR-0011).",
+      "properties": {
+        "disease": {
+          "type": "string"
+        },
+        "record_id": {
+          "type": "string"
+        },
+        "score": {
+          "type": "number"
+        },
+        "target": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "target",
+        "disease",
+        "score",
+        "record_id"
+      ],
+      "title": "HeldOutAssociation",
+      "type": "object"
+    },
+    "Layer": {
+      "description": "",
+      "enum": [
+        "disease_core",
+        "background"
+      ],
+      "title": "Layer",
+      "type": "string"
+    },
+    "Predicate": {
+      "description": "Closed list. Regulation direction is carried by sign, and null results by negated, in line with Biolink's move from directional predicates to qualifiers and its negated slot.",
+      "enum": [
+        "gene_associated_with_condition",
+        "increases_likelihood_of",
+        "decreases_likelihood_of",
+        "regulates",
+        "causes",
+        "contributes_to",
+        "physically_interacts_with",
+        "participates_in",
+        "expressed_in",
+        "located_in",
+        "altered_in",
+        "associated_with",
+        "correlated_with",
+        "manifestation_of",
+        "has_phenotype",
+        "biomarker_for",
+        "target_for",
+        "drug_acts_on",
+        "studied_to_treat",
+        "treats",
+        "affects",
+        "has_member",
+        "characterised_by"
+      ],
+      "title": "Predicate",
+      "type": "string"
+    },
+    "Sign": {
+      "description": "",
+      "enum": [
+        "positive",
+        "negative"
+      ],
+      "title": "Sign",
+      "type": "string"
+    }
+  },
+  "$id": "https://nurtal.github.io/SDKG/schema/",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "additionalProperties": true,
+  "metamodel_version": "1.12.0",
+  "title": "sdkg",
+  "type": "object",
+  "version": "0.1.0-proposal"
+}

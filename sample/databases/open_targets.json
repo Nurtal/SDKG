@@ -1,0 +1,4 @@
+{"diseases":[
+ {"id":"MONDO_0010030","associatedTargets":{"rows":[{"score":0.51,"target":{"id":"ENSG00000000001","approvedSymbol":"STAT4"}},{"score":0.2,"target":{"id":"ENSG00000000002","approvedSymbol":"IRF5"}}]}},
+ {"id":"MONDO_0000001","associatedTargets":{"rows":[{"score":0.9,"target":{"id":"ENSG00000000002","approvedSymbol":"IRF5"}},{"score":0.1,"target":{"id":"ENSG00000000001","approvedSymbol":"STAT4"}}]}}
+]}

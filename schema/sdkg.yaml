@@ -1,0 +1,292 @@
+id: https://nurtal.github.io/SDKG/schema/
+name: sdkg
+title: SDKG data model
+description: >-
+  PROPOSAL, awaiting validation by the domain expert (issue #9). Claims are the fundamental unit
+  of the graph (ADR-0001). Biolink alignment was checked against Biolink Model 4.4.6.
+license: https://creativecommons.org/licenses/by/4.0/
+version: 0.1.0-proposal
+prefixes:
+  sdkg: https://nurtal.github.io/SDKG/schema/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/vocab/
+default_prefix: sdkg
+default_range: string
+imports:
+  - linkml:types
+
+slots:
+  claim_id:
+    description: The stable identifier of a claim, derived from its normalised content.
+
+classes:
+  Entity:
+    description: A concept that claims are about.
+    attributes:
+      entity_id:
+        identifier: true
+      label:
+        required: true
+      category:
+        range: EntityCategory
+        required: true
+      resolved:
+        range: boolean
+        required: true
+        description: False when the concept has no adequate ontology match and uses a local identifier.
+
+  Claim:
+    description: A statement that a source asserts a relationship between two entities in a context.
+    slots: [claim_id]
+    slot_usage:
+      claim_id:
+        identifier: true
+    attributes:
+      subject:
+        required: true
+      predicate:
+        range: Predicate
+        required: true
+      object:
+        required: true
+      sign:
+        range: Sign
+      negated:
+        range: boolean
+        required: true
+        description: True for a null result. The source tested the relationship and did not find it.
+      directed:
+        range: boolean
+        description: Whether the source states a direction from subject to object.
+      direct:
+        range: boolean
+        description: Whether the source describes the relationship as direct.
+      species: {}
+      tissue: {}
+      population: {}
+      assay: {}
+      evidence_model:
+        range: EvidenceModel
+      biomarker_role:
+        range: BiomarkerRole
+      layer:
+        range: Layer
+        required: true
+      claim_status:
+        range: ClaimStatus
+        required: true
+      evidence_level:
+        range: EvidenceLevel
+      extraction_reliability:
+        range: float
+        description: Estimated per predicate from the test sample. Empty until that review exists.
+      source:
+        required: true
+      source_version:
+        description: The version of a database snapshot.
+      source_record:
+        description: The record's identifier within its source.
+      trial_phase: {}
+      trial_status: {}
+      endpoint:
+        description: The clinical endpoint a trial measured.
+
+  Evidence:
+    description: Where a claim's evidence span is. Its text is included only when licensing allows.
+    slots: [claim_id]
+    slot_usage:
+      claim_id:
+        required: true
+    attributes:
+      pmid:
+        required: true
+      span_start:
+        range: integer
+        required: true
+      span_end:
+        range: integer
+        required: true
+      span_hash:
+        required: true
+      span_text: {}
+
+  ClaimGroup:
+    description: Claims with the same normalised subject, predicate, object and context.
+    attributes:
+      group_id:
+        identifier: true
+      support:
+        range: integer
+        required: true
+        description: The number of distinct publications. Not a count of independent sources.
+      positive_claims:
+        range: integer
+        required: true
+      negative_claims:
+        range: integer
+        required: true
+      claim_ids:
+        multivalued: true
+        required: true
+
+  HeldOutAssociation:
+    description: An Open Targets SjD association reserved for evaluation, kept out of the graph (ADR-0011).
+    attributes:
+      target:
+        required: true
+      disease:
+        required: true
+      score:
+        range: float
+        required: true
+      record_id:
+        required: true
+
+  Contradiction:
+    description: Two claims about the same subject and object, in compatible contexts, with opposite signs.
+    attributes:
+      claim_id_a:
+        required: true
+      claim_id_b:
+        required: true
+
+enums:
+  Sign:
+    permissible_values:
+      positive: {}
+      negative: {}
+  Layer:
+    permissible_values:
+      disease_core: {}
+      background: {}
+  ClaimStatus:
+    permissible_values:
+      curated_source: {}
+      ai_extracted: {}
+      human_reviewed: {}
+  EvidenceModel:
+    permissible_values:
+      human: {}
+      secondary_sjd: {}
+      animal: {}
+      in_vitro: {}
+  EvidenceLevel:
+    description: PROPOSAL. Ordinal grade of study strength, for the expert to review.
+    permissible_values:
+      randomised_trial: {}
+      curated_database: {}
+      human_genetic: {}
+      human_observational: {}
+      animal_or_in_vitro: {}
+      unspecified: {}
+  BiomarkerRole:
+    description: Proposed as a claim property so that biomarker_for stays one predicate (CQ11).
+    permissible_values:
+      diagnosis: {}
+      activity: {}
+      prognosis: {}
+      treatment_response: {}
+  EntityCategory:
+    permissible_values:
+      gene_or_protein: {exact_mappings: [biolink:GeneOrGeneProduct]}
+      genetic_variant: {exact_mappings: [biolink:SequenceVariant]}
+      pathway_or_process: {exact_mappings: [biolink:BiologicalProcess]}
+      cell_type: {exact_mappings: [biolink:Cell]}
+      tissue_or_anatomy: {exact_mappings: [biolink:AnatomicalEntity]}
+      phenotype: {exact_mappings: [biolink:PhenotypicFeature]}
+      disease: {exact_mappings: [biolink:Disease]}
+      biomarker: {description: Not a Biolink category. A role of another entity in many cases.}
+      autoantibody: {description: No specific Biolink category.}
+      drug: {exact_mappings: [biolink:Drug]}
+      clinical_trial: {exact_mappings: [biolink:ClinicalTrial]}
+      clinical_endpoint: {exact_mappings: [biolink:ClinicalAttribute]}
+      patient_population: {exact_mappings: [biolink:PopulationOfIndividualOrganisms]}
+      published_stratification: {description: No specific Biolink category.}
+      stratification_subgroup: {exact_mappings: [biolink:Cohort]}
+      assay: {description: No specific Biolink category.}
+      unclassified: {description: Not yet classified. Used for concepts awaiting review.}
+  Predicate:
+    description: >-
+      Closed list. Regulation direction is carried by sign, and null results by negated, in line
+      with Biolink's move from directional predicates to qualifiers and its negated slot.
+    permissible_values:
+      gene_associated_with_condition:
+        exact_mappings: [biolink:gene_associated_with_condition]
+        annotations: {competency_questions: CQ01}
+      increases_likelihood_of:
+        exact_mappings: [biolink:associated_with_increased_likelihood_of]
+        annotations: {competency_questions: CQ10}
+      decreases_likelihood_of:
+        exact_mappings: [biolink:associated_with_decreased_likelihood_of]
+        annotations: {competency_questions: CQ10}
+      regulates:
+        exact_mappings: [biolink:regulates]
+        annotations: {competency_questions: CQ02 CQ03}
+      causes:
+        exact_mappings: [biolink:causes]
+        annotations: {competency_questions: CQ04}
+      contributes_to:
+        exact_mappings: [biolink:contributes_to]
+        annotations: {competency_questions: CQ04 CQ09}
+      physically_interacts_with:
+        exact_mappings: [biolink:physically_interacts_with]
+        annotations: {competency_questions: CQ04}
+      participates_in:
+        exact_mappings: [biolink:participates_in]
+        annotations: {competency_questions: CQ02 CQ04}
+      expressed_in:
+        exact_mappings: [biolink:expressed_in]
+        annotations: {competency_questions: CQ05}
+      located_in:
+        exact_mappings: [biolink:located_in]
+        annotations: {competency_questions: CQ05 CQ06 CQ07}
+      altered_in:
+        description: A molecule or cell type is elevated or reduced in a tissue or condition, as given by sign.
+        close_mappings: [biolink:associated_with]
+        annotations:
+          competency_questions: CQ02 CQ05
+          biolink_gap: No predicate for measured change in a tissue or condition.
+      associated_with:
+        exact_mappings: [biolink:associated_with]
+        annotations: {competency_questions: CQ07 CQ13}
+      correlated_with:
+        exact_mappings: [biolink:correlated_with]
+        annotations: {competency_questions: CQ13}
+      manifestation_of:
+        exact_mappings: [biolink:manifestation_of]
+        annotations: {competency_questions: CQ08}
+      has_phenotype:
+        exact_mappings: [biolink:has_phenotype]
+        annotations: {competency_questions: CQ08}
+      biomarker_for:
+        exact_mappings: [biolink:biomarker_for]
+        annotations: {competency_questions: CQ11 CQ12}
+      target_for:
+        exact_mappings: [biolink:target_for]
+        annotations: {competency_questions: CQ14}
+      drug_acts_on:
+        description: A drug acts on a molecular target.
+        close_mappings: [biolink:affects]
+        annotations:
+          competency_questions: CQ14 CQ15 CQ17
+          biolink_gap: biolink:has_target runs from disease to gene, not from drug to target.
+      studied_to_treat:
+        exact_mappings: [biolink:studied_to_treat]
+        annotations: {competency_questions: CQ15 CQ17}
+      treats:
+        exact_mappings: [biolink:treats]
+        annotations: {competency_questions: CQ15}
+      affects:
+        description: An intervention affects a clinical endpoint. Negated for a failed endpoint.
+        exact_mappings: [biolink:affects]
+        annotations: {competency_questions: CQ15 CQ16}
+      has_member:
+        description: A published stratification contains a subgroup.
+        exact_mappings: [biolink:has_member]
+        annotations: {competency_questions: CQ18}
+      characterised_by:
+        description: A subgroup is defined or characterised by a feature.
+        close_mappings: [biolink:associated_with]
+        annotations:
+          competency_questions: CQ18 CQ19 CQ20
+          biolink_gap: No predicate for a defining feature of a patient subgroup.

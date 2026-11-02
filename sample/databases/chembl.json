@@ -1,0 +1,6 @@
+{"mechanisms":[
+ {"molecule_chembl_id":"CHEMBL1201576","target_chembl_id":"CHEMBL0000001","action_type":"INHIBITOR","direct_interaction":1,"mec_id":1},
+ {"molecule_chembl_id":"CHEMBL1201576","target_chembl_id":"CHEMBL0000002","action_type":"AGONIST","direct_interaction":0,"mec_id":2},
+ {"molecule_chembl_id":"CHEMBL1201576","target_chembl_id":"CHEMBL0000003","action_type":"BINDING AGENT","direct_interaction":1,"mec_id":3},
+ {"molecule_chembl_id":"CHEMBL1201576","target_chembl_id":"CHEMBL9999999","action_type":"INHIBITOR","direct_interaction":1,"mec_id":4}
+]}

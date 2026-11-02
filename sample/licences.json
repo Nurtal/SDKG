@@ -1,0 +1,40 @@
+{
+  "publish_span_text": false,
+  "sources": {
+    "sample-literature": {
+      "status": "allowed",
+      "licence": "CC0-1.0",
+      "notes": "Synthetic test data written for this project."
+    },
+    "reactome": {
+      "status": "allowed",
+      "licence": "test-only",
+      "notes": "Applies only to the synthetic fixture in sample/databases. The real source remains unconfirmed in licences/manifest.json."
+    },
+    "hpo": {
+      "status": "allowed",
+      "licence": "test-only",
+      "notes": "Applies only to the synthetic fixture in sample/databases. The real source remains unconfirmed in licences/manifest.json."
+    },
+    "chembl": {
+      "status": "allowed",
+      "licence": "test-only",
+      "notes": "Applies only to the synthetic fixture in sample/databases. The real source remains unconfirmed in licences/manifest.json."
+    },
+    "clinicaltrials-gov": {
+      "status": "allowed",
+      "licence": "test-only",
+      "notes": "Applies only to the synthetic fixture in sample/databases. The real source remains unconfirmed in licences/manifest.json."
+    },
+    "open-targets": {
+      "status": "allowed",
+      "licence": "test-only",
+      "notes": "Applies only to the synthetic fixture in sample/databases. The real source remains unconfirmed in licences/manifest.json."
+    },
+    "uniprot": {
+      "status": "allowed",
+      "licence": "test-only",
+      "notes": "Applies only to the synthetic fixture in sample/databases. The real source remains unconfirmed in licences/manifest.json."
+    }
+  }
+}

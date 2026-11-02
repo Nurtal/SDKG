@@ -1,0 +1,19 @@
+{
+  "publish_span_text": false,
+  "sources": {
+    "pubmed": {"status": "unconfirmed", "terms_url": "https://www.nlm.nih.gov/databases/download/terms_and_conditions.html", "notes": "Abstracts may remain under publisher copyright. Awaiting legal review."},
+    "pmc-open-access": {"status": "unconfirmed", "terms_url": "https://pmc.ncbi.nlm.nih.gov/tools/openftlist/", "notes": "Licence varies per article."},
+    "uniprot": {"status": "unconfirmed", "terms_url": "https://www.uniprot.org/help/license"},
+    "reactome": {"status": "unconfirmed", "terms_url": "https://reactome.org/license"},
+    "chembl": {"status": "unconfirmed", "terms_url": "https://chembl.gitbook.io/chembl-interface-documentation/about"},
+    "hpo": {"status": "unconfirmed", "terms_url": "https://human-phenotype-ontology.github.io/license.html"},
+    "clinicaltrials-gov": {"status": "unconfirmed", "terms_url": "https://clinicaltrials.gov/about-site/terms-conditions"},
+    "open-targets": {"status": "unconfirmed", "terms_url": "https://platform-docs.opentargets.org/licence"},
+    "hgnc": {"status": "unconfirmed", "terms_url": "https://www.genenames.org/about/"},
+    "mondo": {"status": "unconfirmed", "terms_url": "https://obofoundry.org/ontology/mondo.html"},
+    "go": {"status": "unconfirmed", "terms_url": "https://geneontology.org/docs/go-citation-policy/"},
+    "cl": {"status": "unconfirmed", "terms_url": "https://obofoundry.org/ontology/cl.html"},
+    "uberon": {"status": "unconfirmed", "terms_url": "https://obofoundry.org/ontology/uberon.html"},
+    "chebi": {"status": "unconfirmed", "terms_url": "https://www.ebi.ac.uk/chebi/"}
+  }
+}

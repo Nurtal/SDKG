@@ -1,0 +1,21 @@
+mention	entity_id	label	category
+TNFSF13B	HGNC:11929	TNFSF13B	gene_or_protein
+BAFF	HGNC:11929	TNFSF13B	gene_or_protein
+IRF5	HGNC:6120	IRF5	gene_or_protein
+IRF5 protein	UniProtKB:Q13568	IRF5 protein	gene_or_protein
+STAT4	HGNC:11365	STAT4	gene_or_protein
+Sjögren's disease	MONDO:0010030	Sjogren syndrome	disease
+Sjögren's syndrome	MONDO:0010030	Sjogren syndrome	disease
+Keratoconjunctivitis sicca	HP:0001097	Keratoconjunctivitis sicca	phenotype
+type I interferon signalling	GO:0060337	type I interferon-mediated signaling pathway	pathway_or_process
+plasmacytoid dendritic cell	CL:0000784	plasmacytoid dendritic cell	cell_type
+minor salivary gland	UBERON:0001830	minor salivary gland	tissue_or_anatomy
+rituximab	CHEMBL:1201576	RITUXIMAB	drug
+prednisone	CHEBI:8382	prednisone	drug
+Q13568	HGNC:6120	IRF5	gene_or_protein
+Q99999	HGNC:99990	SYNTHETIC1	gene_or_protein
+Q88888	HGNC:99991	SYNTHETIC2	gene_or_protein
+ORPHA:289390	MONDO:0010030	Sjogren syndrome	disease
+CHEMBL0000001	HGNC:6120	IRF5	gene_or_protein
+CHEMBL0000002	HGNC:11365	STAT4	gene_or_protein
+CHEMBL0000003	HGNC:11929	TNFSF13B	gene_or_protein

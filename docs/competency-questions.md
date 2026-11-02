@@ -76,30 +76,15 @@ The **Layer** column shows what a question needs: **Core** (disease core), **Bac
 | CQ22 | Which relationships have contradictory claims in compatible contexts, and how could those contexts explain the disagreement? | Core | Contradiction, context | Exploratory |
 | CQ23 | Which SjD claims rest only on animal or in vitro evidence, with no human evidence? | Core | Evidence model tag | Checkable |
 
-## Candidate vocabulary
+## Proposed vocabulary
 
-This list is derived from the questions above and is a starting point for the schema. Alignment with Biolink has not been checked yet.
+The entity types and predicates are now proposed in the [schema](../schema/sdkg.yaml), each traced to these questions and checked against Biolink Model 4.4.6. The expert reviews them alongside the questions. These choices need the most attention:
 
-**Entity types (16):** gene or protein, genetic variant, pathway or biological process, cell type, tissue or anatomical structure, phenotype or manifestation, disease, biomarker, autoantibody, drug, clinical trial, clinical endpoint or score, patient population, published stratification, stratification subgroup, assay.
-
-**Candidate predicates (24):**
-
-| Group | Predicates |
-|---|---|
-| Genetics | `genetically_associated_with`, `risk_factor_for` |
-| Regulation | `increases`, `decreases`, `activates`, `inhibits`, `regulates` |
-| Molecular | `physically_interacts_with`, `participates_in` |
-| Expression and cells | `expressed_in`, `elevated_in`, `reduced_in`, `infiltrates` |
-| Clinical | `associated_with`, `contributes_to`, `manifestation_of`, `predicts` |
-| Biomarkers | `biomarker_for`, `correlates_with` |
-| Therapeutics | `targets`, `tested_in`, `treats`, `no_effect_on` |
-| Stratification | `defines_subgroup` |
-
-These predicates still need review:
-
-- **Overlap:** `associated_with` and `correlates_with`, and `increases` and `activates`, may be hard to tell apart reliably.
-- **Null results:** `no_effect_on` may be better modelled as a property of a claim, usable with any predicate.
-- **Biomarker roles:** CQ11 needs diagnosis, activity, prognosis and treatment response, which could be a claim property.
+- **Regulation:** `regulates` plus a sign replaces `increases`, `decreases`, `activates` and `inhibits`. Biolink has deprecated its directional predicates.
+- **Null results:** these use a `negated` property on any claim, replacing `no_effect_on`.
+- **Biomarker roles:** these use a `biomarker_role` property on `biomarker_for` claims.
+- **Biolink gaps:** `altered_in`, `drug_acts_on` and `characterised_by` have no exact Biolink predicate, so they use close mappings.
+- **Evidence levels:** the grades and their rule are proposals.
 
 ## Questions deliberately excluded from v1
 

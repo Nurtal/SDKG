@@ -1,0 +1,208 @@
+{
+   "@context": {
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "biolink": "https://w3id.org/biolink/vocab/",
+      "linkml": "https://w3id.org/linkml/",
+      "sdkg": "https://nurtal.github.io/SDKG/schema/",
+      "skos": "http://www.w3.org/2004/02/skos/core#",
+      "@vocab": "https://nurtal.github.io/SDKG/schema/",
+      "assay": {
+         "@id": "assay"
+      },
+      "biomarker_role": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "biomarker_role"
+      },
+      "claim_status": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "claim_status"
+      },
+      "direct": {
+         "@type": "xsd:boolean",
+         "@id": "direct"
+      },
+      "directed": {
+         "@type": "xsd:boolean",
+         "@id": "directed"
+      },
+      "endpoint": {
+         "@id": "endpoint"
+      },
+      "evidence_level": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "evidence_level"
+      },
+      "evidence_model": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "evidence_model"
+      },
+      "extraction_reliability": {
+         "@type": "xsd:float",
+         "@id": "extraction_reliability"
+      },
+      "layer": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "layer"
+      },
+      "negated": {
+         "@type": "xsd:boolean",
+         "@id": "negated"
+      },
+      "object": {
+         "@id": "object"
+      },
+      "population": {
+         "@id": "population"
+      },
+      "predicate": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "predicate"
+      },
+      "sign": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "sign"
+      },
+      "source": {
+         "@id": "source"
+      },
+      "source_record": {
+         "@id": "source_record"
+      },
+      "source_version": {
+         "@id": "source_version"
+      },
+      "species": {
+         "@id": "species"
+      },
+      "subject": {
+         "@id": "subject"
+      },
+      "tissue": {
+         "@id": "tissue"
+      },
+      "trial_phase": {
+         "@id": "trial_phase"
+      },
+      "trial_status": {
+         "@id": "trial_status"
+      },
+      "claim_id": {
+         "@id": "claim_id"
+      },
+      "claim_ids": {
+         "@id": "claim_ids"
+      },
+      "group_id": "@id",
+      "negative_claims": {
+         "@type": "xsd:integer",
+         "@id": "negative_claims"
+      },
+      "positive_claims": {
+         "@type": "xsd:integer",
+         "@id": "positive_claims"
+      },
+      "support": {
+         "@type": "xsd:integer",
+         "@id": "support"
+      },
+      "claim_id_a": {
+         "@id": "claim_id_a"
+      },
+      "claim_id_b": {
+         "@id": "claim_id_b"
+      },
+      "category": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "category"
+      },
+      "entity_id": "@id",
+      "label": {
+         "@id": "label"
+      },
+      "resolved": {
+         "@type": "xsd:boolean",
+         "@id": "resolved"
+      },
+      "pmid": {
+         "@id": "pmid"
+      },
+      "span_end": {
+         "@type": "xsd:integer",
+         "@id": "span_end"
+      },
+      "span_hash": {
+         "@id": "span_hash"
+      },
+      "span_start": {
+         "@type": "xsd:integer",
+         "@id": "span_start"
+      },
+      "span_text": {
+         "@id": "span_text"
+      },
+      "disease": {
+         "@id": "disease"
+      },
+      "record_id": {
+         "@id": "record_id"
+      },
+      "score": {
+         "@type": "xsd:float",
+         "@id": "score"
+      },
+      "target": {
+         "@id": "target"
+      },
+      "Claim": {
+         "@id": "Claim"
+      },
+      "ClaimGroup": {
+         "@id": "ClaimGroup"
+      },
+      "Contradiction": {
+         "@id": "Contradiction"
+      },
+      "Entity": {
+         "@id": "Entity"
+      },
+      "Evidence": {
+         "@id": "Evidence"
+      },
+      "HeldOutAssociation": {
+         "@id": "HeldOutAssociation"
+      }
+   }
+}
+
