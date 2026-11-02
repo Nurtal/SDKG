@@ -2,7 +2,7 @@
 
 An open, evidence-linked knowledge graph of Sjögren's disease (SjD), built for computational use.
 
-**Status: design stage.** There is no code or data yet. No extraction has been run, and no quality figures exist.
+**Status: pipeline in development.** The tools run on a small synthetic sample. No real extraction has been run, the graph contains no real data yet, and no quality figures exist. The schema is a proposal awaiting expert validation.
 
 ## Summary
 
@@ -81,6 +81,35 @@ The internal target date will be set after step 3.
 - [ ] Claude API key and budget
 - [ ] Licence review of quoted abstract passages and archived raw LLM outputs
 - [ ] Source licences confirmed in a manifest
+
+## Try it on the sample
+
+The `sample/` directory is synthetic and needs no API key.
+
+```bash
+python -m venv .venv && .venv/bin/pip install -e '.[dev]'
+.venv/bin/python -m pytest
+
+.venv/bin/sdkg extract --corpus sample/corpus --prompt sample/prompts/extract-v0.md \
+  --schema sample/prompts/extraction-output.schema.json \
+  --recorded sample/recorded/responses.jsonl --out .build/archive
+.venv/bin/sdkg build --corpus sample/corpus --archive .build/archive --licences sample/licences.json \
+  --lexicon sample/lexicon.tsv --out .build/release --version sample
+```
+
+```python
+import sdkg
+
+graph = sdkg.load(".build/release")
+graph.claims(subject_label="IRF5")          # Claims with their evidence and context
+graph.claims(layer="disease_core", species="human")
+graph.claim_groups()                        # Support and underlying claims
+graph.contradictions()
+graph.subgraph(["HGNC:6120"], hops=2)
+graph.paths("HGNC:6120", "MONDO:0010030")   # Reports any background-layer steps
+```
+
+Run `sdkg --help` for every command. A `--max-spend-usd` option calls the paid API, and it is the only way the pipeline spends money.
 
 ## Documentation
 

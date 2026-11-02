@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["claims"],
+  "properties": {
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["subject", "predicate", "object", "span", "sign", "negated", "directed", "direct", "biomarker_role", "context"],
+        "properties": {
+          "subject": {"type": "string"},
+          "predicate": {"type": "string"},
+          "object": {"type": "string"},
+          "span": {"type": "string"},
+          "sign": {"type": ["string", "null"], "enum": ["positive", "negative", null]},
+          "negated": {"type": "boolean"},
+          "directed": {"type": ["boolean", "null"]},
+          "direct": {"type": ["boolean", "null"]},
+          "biomarker_role": {"type": ["string", "null"], "enum": ["diagnosis", "activity", "prognosis", "treatment_response", null]},
+          "context": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["species", "tissue", "population", "assay", "evidence_model"],
+            "properties": {
+              "species": {"type": ["string", "null"]},
+              "tissue": {"type": ["string", "null"]},
+              "population": {"type": ["string", "null"]},
+              "assay": {"type": ["string", "null"]},
+              "evidence_model": {"type": ["string", "null"], "enum": ["human", "secondary_sjd", "animal", "in_vitro", null]}
+            }
+          }
+        }
+      }
+    }
+  }
+}

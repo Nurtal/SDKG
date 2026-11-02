@@ -1,0 +1,239 @@
+# Non-deprecated predicates in Biolink Model 4.4.6. Regenerate when updating the pinned version.
+active in
+actively involved in
+actively involves
+acts upstream of
+acts upstream of negative effect
+acts upstream of or within
+acts upstream of or within negative effect
+acts upstream of or within positive effect
+acts upstream of positive effect
+adverse event of
+affected by
+affects
+affects likelihood of
+affects sensitivity to
+ameliorates condition
+applied to treat
+associated with
+associated with decreased likelihood of
+associated with increased likelihood of
+associated with likelihood of
+associated with resistance to
+associated with response to
+associated with sensitivity to
+author
+beneficial in models for
+biomarker for
+broad match
+can be carried out by
+capable of
+catalyzes
+caused by
+causes
+chemically similar to
+close match
+coexists with
+coexpressed with
+colocalizes with
+completed by
+composed primarily of
+condition ameliorated by
+condition associated with gene
+condition exacerbated by
+condition predisposed by
+condition promoted by
+consumed by
+consumes
+contains process
+contraindicated in
+contributes to
+contribution from
+contributor
+correlated with
+decreased amount in
+decreased likelihood associated with
+decreases sensitivity to
+derives from
+derives into
+develops from
+develops into
+diagnoses
+directly physically interacts with
+disease has basis in
+disease has location
+disrupted by
+disrupts
+editor
+enabled by
+enables
+exacerbates condition
+exact match
+expressed in
+expresses
+food component of
+gene associated with condition
+gene product of
+gene_fusion_with
+genetic_neighborhood_of
+genetically interacts with
+has active component
+has active ingredient
+has adverse event
+has author
+has biomarker
+has catalyst
+has chemical role
+has completed
+has contraindication
+has contributor
+has decreased amount
+has editor
+has excipient
+has food component
+has frameshift variant
+has gene product
+has increased amount
+has input
+has manifestation
+has member
+has metabolite
+has missense variant
+has mode of inheritance
+has molecular consequence
+has nearby variant
+has negative upstream actor
+has negative upstream or within actor
+has non coding variant
+has nonsense variant
+has not completed
+has nutrient
+has output
+has part
+has participant
+has phenotype
+has plasma membrane part
+has positive upstream actor
+has positive upstream or within actor
+has preventative intervention
+has provider
+has publisher
+has sequence location
+has sequence variant
+has side effect
+has splice site variant
+has substrate
+has synonymous variant
+has target
+has upstream actor
+has upstream or within actor
+has variant part
+homologous to
+in cell population with
+in clinical trials for
+in complex with
+in linkage disequilibrium with
+in pathway with
+in preclinical trials for
+in taxon
+increased amount of
+increased likelihood associated with
+increases sensitivity to
+indirectly physically interacts with
+interacts with
+is active ingredient of
+is chemical role of
+is diagnosed by
+is excipient of
+is frameshift variant of
+is input of
+is metabolite of
+is missense variant of
+is molecular consequence of
+is nearby variant of
+is non coding variant of
+is nonsense variant of
+is output of
+is sequence variant of
+is side effect of
+is splice site variant of
+is substrate of
+is synonymous variant of
+lacks part
+likelihood affected by
+likelihood associated with
+located in
+location of
+location of disease
+manifestation of
+member of
+mentioned by
+mentions
+missing from
+mode of inheritance of
+model of
+models
+models demonstrating benefits for
+narrow match
+negatively correlated with
+not completed by
+nutrient of
+occurs in
+occurs in disease
+occurs together in literature with
+opposite of
+orthologous to
+overlaps
+paralogous to
+part of
+participates in
+pharmacologically interacts with
+phenotype of
+physically interacts with
+plasma membrane part of
+positively correlated with
+preceded by
+precedes
+predisposes to condition
+preventative for condition
+primarily composed of
+produced by
+produces
+promotes condition
+provider
+publisher
+regulated by
+regulates
+related condition
+related to
+related to at concept level
+related to at instance level
+resistance associated with
+response associated with
+same as
+sensitivity affected by
+sensitivity associated with
+sensitivity decreased by
+sensitivity increased by
+sequence location of
+similar to
+studied to treat
+subclass of
+subject of treatment application or study for treatment by
+superclass of
+target for
+taxon of
+temporally related to
+tested by clinical trials of
+tested by preclinical trials of
+transcribed from
+transcribed to
+translates to
+translation of
+treated by
+treated in studies by
+treatment applications from
+treats
+treats or applied or studied to treat
+variant part of
+xenologous to

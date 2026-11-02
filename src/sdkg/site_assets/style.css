@@ -1,0 +1,44 @@
+:root {
+  --bg: #fbfaf8; --surface: #ffffff; --text: #1f2328; --muted: #5a626c; --line: #d8dbe0;
+  --accent: #125e8a; --core: #0f6b4f; --background: #6a5a12; --warn-bg: #fff4d6; --warn-text: #5c4300;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15181c; --surface: #1d2126; --text: #e8eaed; --muted: #a4acb6; --line: #39404a;
+    --accent: #7cc0ea; --core: #6fd2ad; --background: #dcc66d; --warn-bg: #3b2f0b; --warn-text: #f6e2a6;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header, main { max-width: 56rem; margin: 0 auto; padding: 0 1.5rem; }
+header { padding-top: 2rem; }
+h1 { margin: 0; font-size: 2rem; }
+h2 { margin: 2rem 0 .5rem; font-size: 1.25rem; }
+h2:focus { outline: none; }
+h3 { margin: 1.25rem 0 .25rem; font-size: 1.05rem; overflow-wrap: anywhere; }
+a { color: var(--accent); }
+.lede { margin: .25rem 0; }
+.meta { color: var(--muted); font-size: .875rem; }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 1rem; top: 1rem; background: var(--surface); padding: .5rem; }
+.data-notice { background: var(--warn-bg); color: var(--warn-text); padding: .75rem 1.5rem; text-align: center; font-weight: 600; }
+label { display: block; margin-bottom: .25rem; }
+input[type="search"] { width: 100%; padding: .625rem .75rem; font: inherit; color: inherit; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.results { list-style: none; margin: .5rem 0 0; padding: 0; }
+.results button { width: 100%; padding: .5rem .75rem; font: inherit; color: inherit; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; margin-bottom: .25rem; cursor: pointer; overflow-wrap: anywhere; }
+.results button:hover, .results button:focus-visible { border-color: var(--accent); }
+.id { color: var(--muted); font-size: .875rem; }
+.claim { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: .625rem .75rem; margin: .5rem 0; overflow-wrap: anywhere; }
+.tag { display: inline-block; margin: 0 .25rem .25rem 0; padding: 0 .4rem; border: 1px solid currentColor; border-radius: 4px; font-size: .8125rem; }
+.tag.disease_core { color: var(--core); }
+.tag.background { color: var(--background); }
+.span { margin: .375rem 0; padding-left: .625rem; border-left: 3px solid var(--line); }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 0 .75rem; margin: .375rem 0; font-size: .875rem; }
+dt { color: var(--muted); }
+dd { margin: 0; }
+@media (max-width: 480px) {
+  header, main { padding: 0 1rem; }
+  header { padding-top: 1.25rem; }
+  dl { grid-template-columns: 1fr; }
+  dd { margin-bottom: .25rem; }
+}

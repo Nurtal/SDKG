@@ -1,0 +1,7 @@
+Q13568	R-HSA-0000001	https://example.invalid/1	Synthetic pathway one	TAS	Homo sapiens
+Q99999	R-HSA-0000001	https://example.invalid/1	Synthetic pathway one	TAS	Homo sapiens
+Q99999	R-HSA-0000002	https://example.invalid/2	Synthetic pathway two	TAS	Homo sapiens
+Q13568	R-HSA-0000003	https://example.invalid/3	Synthetic inferred pathway	IEA	Homo sapiens
+Q13568	R-MMU-0000004	https://example.invalid/4	Synthetic mouse pathway	TAS	Mus musculus
+Q88888	R-HSA-0000005	https://example.invalid/5	Synthetic unconnected pathway	TAS	Homo sapiens
+Q77777	R-HSA-0000006	https://example.invalid/6	Synthetic xref pathway	TAS	Homo sapiens

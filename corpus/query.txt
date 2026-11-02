@@ -1,0 +1,1 @@
+(sjogren*[tiab] OR "Sjogren's Syndrome"[MeSH]) AND hasabstract NOT "Sjogren-Larsson Syndrome"[MeSH]

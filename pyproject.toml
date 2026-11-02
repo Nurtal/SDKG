@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sdkg"
+version = "0.1.0"
+description = "Tools for building and using the Sjögren's Disease Knowledge Graph"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+dependencies = ["duckdb>=1.1", "jsonschema>=4", "rdflib>=7"]
+
+[project.optional-dependencies]
+llm = ["anthropic>=2"]
+dev = ["anthropic>=2", "pytest>=8", "linkml>=1.10", "pyshacl>=0.26", "pyyaml>=6", "networkx>=3"]
+
+[project.scripts]
+sdkg = "sdkg.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+sdkg = ["site_assets/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
