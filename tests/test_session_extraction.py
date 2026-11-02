@@ -123,3 +123,81 @@ def test_unicode_line_separators_in_an_abstract_do_not_break_the_corpus(workspac
     path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), "utf-8", newline="\n")
 
     assert load_documents(workspace / "sample/corpus")[0]["text"] == f"First part.{char}Second part."
+
+
+def write_topic(ws: Path, *terms: str) -> Path:
+    path = ws / "topic.txt"
+    path.write_text("# A comment\n" + "\n".join(terms) + "\n", "utf-8")
+    return path
+
+
+def set_text(ws: Path, texts: dict[str, str]) -> None:
+    path = ws / "sample/corpus/documents.jsonl"
+    rows = [json.loads(l) for l in path.read_text("utf-8").split("\n") if l]
+    for row in rows:
+        if row["doc_id"] in texts:
+            row["text"] = texts[row["doc_id"]]
+    path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), "utf-8")
+
+
+def topic_batch(ws: Path, topic: Path, size=5, split=None) -> list[str]:
+    args = ["next-batch", "--corpus", str(ws / "sample/corpus"), "--archive", str(ws / "archive"),
+            "--size", str(size), "--seed", "5", "--out", str(ws / "t.jsonl"), "--topic", str(topic)]
+    if split:
+        args += ["--split", split]
+    assert main(args) == 0
+    return [json.loads(l)["doc_id"] for l in (ws / "t.jsonl").read_text("utf-8").split("\n") if l]
+
+
+def test_a_topic_keeps_only_abstracts_that_match_its_terms(workspace):
+    set_text(workspace, {"SAMPLE:0001": "Rituximab was studied.", "SAMPLE:0002": "Nothing relevant.", "SAMPLE:0003": "BAFF levels rose."})
+
+    assert set(topic_batch(workspace, write_topic(workspace, "rituximab", "BAFF"))) == {"SAMPLE:0001", "SAMPLE:0003"}
+
+
+@pytest.mark.parametrize("text,matches", [("IL-6 rose", True), ("IL-60 rose", False), ("JAK inhibitors", True), ("Jakarta cohort", False), ("(BAFF)", True)])
+def test_topic_terms_match_whole_words_only(workspace, text, matches):
+    set_text(workspace, {"SAMPLE:0001": text})
+
+    assert ("SAMPLE:0001" in topic_batch(workspace, write_topic(workspace, "IL-6", "JAK", "BAFF"))) is matches
+
+
+def test_a_topic_also_matches_the_title(workspace):
+    path = workspace / "sample/corpus/documents.jsonl"
+    rows = [json.loads(l) for l in path.read_text("utf-8").split("\n") if l]
+    rows[0]["title"] = "A BAFF study"
+    path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), "utf-8")
+
+    assert topic_batch(workspace, write_topic(workspace, "BAFF")) == ["SAMPLE:0001"]
+
+
+def test_topic_terms_with_greek_letters_match_their_names(workspace):
+    set_text(workspace, {"SAMPLE:0001": "TNF-α was raised."})
+
+    assert topic_batch(workspace, write_topic(workspace, "TNF-alpha")) == ["SAMPLE:0001"]
+
+
+def test_topic_order_is_reproducible_and_read_documents_leave_it(workspace):
+    set_text(workspace, {k: "BAFF" for k in ("SAMPLE:0001", "SAMPLE:0002", "SAMPLE:0003")})
+    topic = write_topic(workspace, "BAFF")
+    first = topic_batch(workspace, topic)
+
+    assert first == topic_batch(workspace, topic)
+    import_session(workspace, [{"doc_id": first[0], "claims": []}])
+    assert first[0] not in topic_batch(workspace, topic)
+
+
+def test_the_published_topic_exists_and_the_prompt_freeze_matches():
+    from sdkg.extraction import text_hash
+
+    freeze = json.loads((REPO / "pipeline/prompt-freeze.json").read_text("utf-8"))
+
+    assert freeze["prompt_hash"] == text_hash((REPO / freeze["prompt"]).read_text("utf-8"))
+    assert "BAFF" in (REPO / "topics/therapeutic-targets-and-mechanisms.txt").read_text("utf-8")
+
+
+def test_the_published_topic_avoids_ordinary_words():
+    lines = (REPO / "topics/therapeutic-targets-and-mechanisms.txt").read_text("utf-8").split("\n")
+    terms = {l.strip().casefold() for l in lines if l.strip() and not l.startswith("#")}
+
+    assert not terms & {"april", "sting", "may", "march"}

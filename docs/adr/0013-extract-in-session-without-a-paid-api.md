@@ -6,6 +6,6 @@ The rest of ADR-0004 and ADR-0007 still applies: claims need a verifiable eviden
 
 ## Consequences
 
-- **Scale:** a session reads far fewer abstracts than a batch run, so the full corpus takes many sessions. A release must state how much of the corpus was read and in what order. Documents are read in a reproducible random order, so a partial corpus is an unbiased sample of it, but coverage cannot be described as complete.
+- **Scale:** a session reads far fewer abstracts than a batch run, so the full corpus takes many sessions. A release must state how much of the corpus was read and in what order. [ADR-0014](0014-targeted-reading-of-therapeutic-targets-and-mechanisms.md) later chose targeted reading, so a partial corpus is not a sample of the whole.
 - **Consistency:** the reader's context varies between sessions and cannot be pinned as a batch run could, which the paper must disclose. The archive records `claude-code-session` as the model version.
 - **Independence:** Claude reads every abstract and has also taken modelling decisions (ADR-0012), which makes independent human review more important.
